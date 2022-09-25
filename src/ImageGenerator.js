@@ -53,7 +53,7 @@ function ImageGenerator({
     }), {});
   }
 
-  // Convert a single image from imgsrc to output images for each size/format combo
+  // Convert a single image to output images for each size/format combo
   function buildImage(imgsrc) {
     return Image(imgsrc, {
       widths: Object.values(sizes),
