@@ -1,5 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
+const util = require('util');
 
 async function clearDir(buildDir, { ignorePath }) {
   if (!(await exists(buildDir))) {
@@ -29,14 +30,21 @@ async function writeFile([filePath, fileContent]) {
 async function exists(filePath) {
   try {
     await fs.access(filePath);
+    console.log(`exists TRUE: ${filePath}`);
     return true;
   } catch (e) {
+    console.log(`exists FALSE: ${filePath}`);
     return false;
   }
+}
+
+function loggable(o) {
+  return util.inspect(o, { showHidden: false, depth: null, colors: true });
 }
 
 module.exports = {
   clearDir,
   writeFile,
   exists,
+  loggable,
 };

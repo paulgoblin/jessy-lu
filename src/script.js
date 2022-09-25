@@ -1,7 +1,8 @@
 const pug = require('pug');
 const path = require('path');
-const { clearDir, writeFile } = require('./fsUtils');
+const { clearDir, writeFile, loggable } = require('./fsUtils');
 const SiteDataGenerator = require('./SiteDataGenerator');
+const ImageGenerator = require('./ImageGenerator');
 
 const INDEX_INPUTS = {
   pageTitle: 'Jessy Lu',
@@ -9,30 +10,31 @@ const INDEX_INPUTS = {
 
 const BUILD_DIR = path.resolve(__dirname, '../build');
 const BUILD_IMG_DIR = path.resolve(BUILD_DIR, 'img');
-const TEST_IMAGE_PATH = path.resolve('/Users/michaelrichter/Sites/jessy-lu/source_images/04_Soft Screen/04b_Soft Screen II');
-// Nest 1_Main/Soft Screen II.JPG
+const CONTENT_SOURCE_DIR = path.resolve('/Users/michaelrichter/Sites/jessy-lu/source_content');
 
-(async function execute() {
-  await time(buildSite)();
-}());
+const CONFIG = {
+  sourceDir: CONTENT_SOURCE_DIR,
+  outputDir: BUILD_IMG_DIR,
+  sizes: {
+    // icon: 50,
+    // thumb: 300,
+    medium: 600,
+    // large: 1000,
+  },
+};
 
 async function buildSite() {
   // Clear build dir (excluding /img files)
   await clearDir(BUILD_DIR, { ignorePath: BUILD_IMG_DIR });
 
-  const siteDataGenerator = SiteDataGenerator({
-    piecePaths: [TEST_IMAGE_PATH],
-    outputDir: BUILD_IMG_DIR,
-    sizes: {
-      icon: 50,
-      thumb: 300,
-      medium: 600,
-      large: 1000,
-    },
-  });
   // Generate images (if they don't exist already)
-  const siteData = await siteDataGenerator.makeSiteData();
-  console.log('siteData', siteData);
+  const imageMetadata = await ImageGenerator(CONFIG).generateImages();
+  // Generate site data based on yamls.
+  const siteData = await SiteDataGenerator({
+    ...CONFIG,
+    imageMetadata,
+  }).makeSiteData();
+  console.log('siteData', loggable(siteData));
 
   // Render page
   const indexPage = pug.renderFile(path.resolve(__dirname, 'templates/index.pug'), INDEX_INPUTS);
@@ -41,6 +43,10 @@ async function buildSite() {
   const pagesData = [[path.resolve(BUILD_DIR, 'index.html'), indexPage]];
   await Promise.all(pagesData.map(writeFile));
 }
+
+(async function execute() {
+  await time(buildSite)();
+}());
 
 function time(fn) {
   return async (...args) => {
