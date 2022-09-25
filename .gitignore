@@ -2,3 +2,5 @@ source_images
 node_modules
 .DS_Store
 .cache
+.generation-metadata-cache.json
+build

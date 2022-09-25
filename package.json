@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node ./src/script.js",
     "test": "npm run build && http-server ./build",
-    "dev": "npm-watch"
+    "dev": "npm run clean && npm-watch",
+    "clean": "rm -rf ./build"
   },
   "watch": {
     "test": {
@@ -28,8 +29,12 @@
     "@11ty/eleventy-img": "^2.0.1",
     "eslint": "^8.23.1",
     "eslint-config-airbnb": "^19.0.4",
+    "glob": "^8.0.3",
+    "glob-promise": "^5.0.0",
     "http-server": "^14.1.1",
+    "lodash": "^4.17.21",
     "npm-watch": "^0.11.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "yaml": "^2.1.1"
   }
 }

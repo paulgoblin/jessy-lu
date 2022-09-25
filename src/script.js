@@ -1,30 +1,38 @@
-const fs = require('fs/promises');
 const pug = require('pug');
 const path = require('path');
-// const Image = require('@11ty/eleventy-img');
+const { clearDir, writeFile } = require('./fsUtils');
+const SiteDataGenerator = require('./SiteDataGenerator');
 
 const INDEX_INPUTS = {
   pageTitle: 'Jessy Lu',
 };
 
 const BUILD_DIR = path.resolve(__dirname, '../build');
+const BUILD_IMG_DIR = path.resolve(BUILD_DIR, 'img');
+const TEST_IMAGE_PATH = path.resolve('/Users/michaelrichter/Sites/jessy-lu/source_images/04_Soft Screen/04b_Soft Screen II');
+// Nest 1_Main/Soft Screen II.JPG
 
-// (async () => {
-//   const url = 'https://images.unsplash.com/photo-1608178398319-48f814d0750c';
-//   const stats = await Image(url, {
-//     widths: [300],
-//   });
+(async function execute() {
+  await time(buildSite)();
+}());
 
-//   console.log(stats);
-// })();
+async function buildSite() {
+  // Clear build dir (excluding /img files)
+  await clearDir(BUILD_DIR, { ignorePath: BUILD_IMG_DIR });
 
-// Clear build folder
-
-async function run() {
-  // Clear build dir
-  await clearDir(BUILD_DIR);
-
-  // Generate images
+  const siteDataGenerator = SiteDataGenerator({
+    piecePaths: [TEST_IMAGE_PATH],
+    outputDir: BUILD_IMG_DIR,
+    sizes: {
+      icon: 50,
+      thumb: 300,
+      medium: 600,
+      large: 1000,
+    },
+  });
+  // Generate images (if they don't exist already)
+  const siteData = await siteDataGenerator.makeSiteData();
+  console.log('siteData', siteData);
 
   // Render page
   const indexPage = pug.renderFile(path.resolve(__dirname, 'templates/index.pug'), INDEX_INPUTS);
@@ -34,32 +42,12 @@ async function run() {
   await Promise.all(pagesData.map(writeFile));
 }
 
-run();
-
-async function writeFile([filePath, fileContent]) {
-  try {
-    await fs.writeFile(filePath, fileContent);
-  } catch (e) {
-    console.error('Error writing file.', e);
-  }
-}
-
-async function clearDir(dirPath) {
-  try {
-    if (await exists(dirPath)) {
-      await fs.rm(dirPath, { recursive: true });
-    }
-    await fs.mkdir(dirPath, { recursive: true });
-  } catch (e) {
-    console.error('Error cleaning build folder', e);
-  }
-}
-
-async function exists(filePath) {
-  try {
-    await fs.access(filePath);
-    return true;
-  } catch (e) {
-    return false;
-  }
+function time(fn) {
+  return async (...args) => {
+    const t0 = performance.now();
+    const result = await fn(...args);
+    const t1 = performance.now();
+    console.log('\x1b[36m%s\x1b[0m', `${fn.name} runtime: ${Math.floor(t1 - t0)} ms`);
+    return result;
+  };
 }
