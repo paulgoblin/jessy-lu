@@ -15,9 +15,14 @@ mixin seriesRow(series, siteData)
 
 mixin seriesItem(piece, siteData)
     .series-item
-        +thumbNail(siteData.images[piece.main])
+        +detailLink(piece, siteData)
 
-mixin thumbNail(image)
+mixin detailLink(piece, siteData)
+    - var mainImage = siteData.images[piece.main]
+    a.detail-link(href=piece.name onclick='clientNav(event)')
+        +thumbnail(mainImage)
+
+mixin thumbnail(image)
     img.thumbnail(src=image.imageMetadata.webp[0].url)
 
 mixin debug(o)

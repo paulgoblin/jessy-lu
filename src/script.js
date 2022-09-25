@@ -43,7 +43,8 @@ async function buildSite() {
   // Write pages to build folder
   await Promise.all([
     writeFile(path.resolve(BUILD_DIR, 'index.html'), indexPage),
-    fs.copyFile(path.resolve(__dirname, 'styles.css'), path.resolve(BUILD_DIR, 'styles.css')),
+    fs.copyFile(path.resolve(__dirname, 'assets/styles.css'), path.resolve(BUILD_DIR, 'styles.css')),
+    fs.copyFile(path.resolve(__dirname, 'assets/index.js'), path.resolve(BUILD_DIR, 'index.js')),
   ]);
 }
 
