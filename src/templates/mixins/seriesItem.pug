@@ -1,4 +1,4 @@
-mixin seriesItem()
+mixin seriesItem(piece)
     .series-item
-        span
-            | I'm an item
+        h3= piece.title
+        img(src=piece.main.imageMetadata.webp[0].url)

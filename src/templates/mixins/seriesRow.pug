@@ -1,6 +1,5 @@
 include ./seriesItem.pug
 
-mixin seriesRow(thing)
+mixin seriesRow(piece)
     .series-row
-        span= 'AHH!!!!' + thing
-        +seriesItem()
+        +seriesItem(piece)

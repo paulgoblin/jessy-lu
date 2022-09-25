@@ -44,11 +44,11 @@ function ImageGenerator({
     const imagePaths = await glob(`${sourceDir}/**/*.{jpg,jpeg}`, { nocase: true });
     const generationMetadata = await Promise.all(imagePaths.map(buildImage));
 
-    // map each image to metadata containing all size/format combos
+    // map each image path to metadata containing all size/format combos
     return generationMetadata.reduce((agg, imageMetadata, i) => ({
       ...agg,
       [imagePaths[i]]: {
-        imageName: baseName(imagePaths[i]),
+        name: baseName(imagePaths[i]),
         imageMetadata,
       },
     }), {});

@@ -1,5 +1,6 @@
 const pug = require('pug');
 const path = require('path');
+const lo = require('lodash');
 const { clearDir, writeFile, loggable } = require('./fsUtils');
 const SiteDataGenerator = require('./SiteDataGenerator');
 const ImageGenerator = require('./ImageGenerator');
@@ -17,7 +18,8 @@ const CONFIG = {
   outputDir: BUILD_IMG_DIR,
   sizes: {
     // icon: 50,
-    // thumb: 300,
+    micro: 150,
+    thumb: 300,
     medium: 600,
     // large: 1000,
   },
@@ -28,16 +30,19 @@ async function buildSite() {
   await clearDir(BUILD_DIR, { ignorePath: BUILD_IMG_DIR });
 
   // Generate images (if they don't exist already)
-  const imageData = await ImageGenerator(CONFIG).generateImages();
+  const imageGenerationData = await ImageGenerator(CONFIG).generateImages();
   // Generate site data based on yamls.
   const siteData = await SiteDataGenerator({
     ...CONFIG,
-    imageData,
+    imageGenerationData,
   }).makeSiteData();
-  console.log('siteData', loggable(siteData));
+  console.log('Site Data', loggable(lo.omit(siteData, 'images')));
 
   // Render page
-  const indexPage = pug.renderFile(path.resolve(__dirname, 'templates/index.pug'), INDEX_INPUTS);
+  const indexPage = pug.renderFile(path.resolve(__dirname, 'templates/index.pug'), {
+    pageTitle: 'Jessy Lu',
+    pieces: { ...siteData },
+  });
 
   // Write pages to build folder
   const pagesData = [[path.resolve(BUILD_DIR, 'index.html'), indexPage]];

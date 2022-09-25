@@ -5,77 +5,145 @@ const YAML = require('yaml');
 const util = require('util');
 const lo = require('lodash');
 
-// TODO: allow as a config
-const FORMAT = 'webp';
-
 function SiteDataGenerator({
   sourceDir,
-  imageData,
-  sizes,
+  imageGenerationData,
 }) {
-  function filename(filePath) {
-    return path.basename(filePath, path.extname(filePath));
+  async function makeSiteData() {
+    return {
+      general: await makeGeneralContent(),
+      main: await makeMainContent(),
+      series: await makeSeriesDict(),
+      pieces: await makePiecesDict(),
+      images: makeImageDict(),
+    };
   }
 
-  async function parseYaml(yamlPath) {
+  async function makeGeneralContent() {
+    const siteContent = await getSiteYamlContent();
+    return {
+      title: siteContent.site_title,
+    };
+  }
+
+  async function makeMainContent() {
+    const siteContent = await getSiteYamlContent();
+    return {
+      siteTitle: siteContent.site_title,
+      seriesOrder: siteContent.series_order,
+    };
+  }
+
+  async function makeSeriesDict() {
+    const siteContent = await getSiteYamlContent();
+    const seriesData = siteContent.series.map((s) => ({
+      title: s.title,
+      name: nameSquash(s.title),
+      pieces: s.pieces.map(nameSquash),
+    }));
+    return lo.keyBy(seriesData, (s) => s.name);
+  }
+
+  // For all piece.yml files, make a pieceData object and key by piece name
+  async function makePiecesDict() {
+    const yamlPaths = await fetchAllYamlFilesOfType('piece');
+    const pieceData = await Promise.all(yamlPaths.map(createPieceData));
+    return lo.keyBy(pieceData, (p) => p.name);
+  }
+
+  function makeImageDict() {
+    return lo.keyBy(imageGenerationData, (i) => i.name);
+  }
+
+  // Associates a piece with all image files in the dir of the yamlPath.
+  // Image order is determined by numbers in the image name.
+  async function createPieceData(yamlPath) {
+    const pieceContent = await readYaml(yamlPath);
+    const imagePaths = await getImagePathsForDir(yamlPath);
+    const pieceImages = imagePaths
+      .map((p) => imageGenerationData[p])
+      .sort((a, b) => imagePriority(a) - imagePriority(b))
+      .map((i) => i.name);
+
+    return {
+      title: pieceContent.title,
+      name: nameSquash(pieceContent.title),
+      main: pieceImages[0],
+      images: pieceImages,
+    };
+  }
+
+  function imagePriority(image) {
+    const priorityMatch = image.name.match(/\d+/);
+    return priorityMatch ? priorityMatch[0] : 0;
+  }
+
+  async function getSiteYamlContent() {
+    const yamlPaths = await fetchAllYamlFilesOfType('site');
+    return readYaml(yamlPaths[0]);
+  }
+
+  async function fetchAllYamlFilesOfType(type) {
+    return glob(`${sourceDir}/**/${type}.{yaml,yml}`, { nocase: true });
+  }
+
+  async function readYaml(yamlPath) {
     const fileContent = await fs.readFile(yamlPath, 'utf8');
-    const yamlContent = YAML.parse(fileContent);
-    switch (filename(yamlPath)) {
-      case 'piece':
-        return createPieceData(yamlContent, yamlPath);
-      default:
-        console.log(
-          `Unsupported content file name, ${filename(yamlPath)}, for file ${yamlPath}`,
-        );
-        return null;
-    }
+    return YAML.parse(fileContent);
   }
 
-  async function createPieceData(pieceContent, yamlPath) {
-    // all images associated with the piece.yaml
-    const imagePaths = await glob(
+  async function getImagePathsForDir(yamlPath) {
+    return glob(
       `${path.dirname(yamlPath)}/**/*.{jpg,jpeg}`,
       { nocase: true },
     );
-    return {
-      ...pieceContent,
-      ...createImageData(imagePaths),
-    };
   }
 
-  function addImagePriority(m) {
-    const priorityMatch = m.imageName.match(/\d+/);
-    return {
-      ...m,
-      priority: priorityMatch ? priorityMatch[0] : 0,
-    };
-  }
-
-  function createImageData(imagePaths) {
-    const pieceImage = imagePaths
-      .map((p) => imageData[p])
-      .map(addImagePriority);
-    return {
-      main: pieceImage.find((m) => m.priority === 0),
-      images: pieceImage,
-    };
-  }
-
-  async function makeSiteData() {
-    const dataFile = await glob(`${sourceDir}/**/*.{yaml,yml}`, { nocase: true });
-    const contentData = await Promise.all(dataFile.map(parseYaml));
-    return contentData
-      .filter((d) => !!d)
-      .reduce((agg, pieceData) => ({
-        ...agg,
-        [pieceData.name]: pieceData,
-      }), {});
+  function nameSquash(name) {
+    return name.toLowerCase().replace(/ /g, '_');
   }
 
   return {
     makeSiteData,
   };
 }
+
+// // dictionaries for everything
+// {
+//   general: {
+//     title: "Jessy Lu",
+//   }
+//   main: {
+//     siteTitle: "Jessy Lu",
+//     series_order: ["series_name_1", "series_name_2", ...]
+//   }
+//   series: {
+//     "series_name_1": {
+//       title: "series_name_1",
+//       pieces: ["piece_name_1", "piece_name_2", ...]
+//     }
+//   }
+//   pieces: {
+//     "piece_name_1": {
+//       title: "ex",
+//       main: "image_name1",
+//       // images ordered by display order
+//       // images[0] is always the main
+//       images: ["image_name_1", "image_name_2", ...]
+//     }
+//   }
+//   images: {
+//     "image_name_1": {
+//       name: "image_name_1",
+//       priority: 2,
+//       metadata: {
+//         webp: [
+//           { format: "webp", width: 200, url: "sdfsd", srcset: "sdfds", sourceType: "image/webp" }
+//         ]
+//       }
+//     }
+//   }
+// }
 
 function loggable(o) {
   return util.inspect(o, { showHidden: false, depth: null, colors: true });
