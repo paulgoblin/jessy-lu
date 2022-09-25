@@ -29,8 +29,8 @@ function SiteDataGenerator({
   async function makeMainContent() {
     const siteContent = await getSiteYamlContent();
     return {
-      siteTitle: siteContent.site_title,
-      seriesOrder: siteContent.series_order,
+      title: siteContent.site_title,
+      seriesOrder: siteContent.series_order.map(nameSquash),
     };
   }
 

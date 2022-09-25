@@ -1,5 +1,24 @@
 extends ./layouts/main.pug
-include ./mixins/seriesRow.pug
 
 block content
-    +seriesRow(pieces.ssII)
+    h1= siteData.main.title
+    each seriesName in siteData.main.seriesOrder
+        +seriesRow(siteData.series[seriesName], siteData)
+
+mixin seriesRow(series, siteData)
+    .series-row
+        h3= series.title
+        each pieceName in series.pieces
+            +seriesItem(siteData.pieces[pieceName], siteData)
+
+mixin seriesItem(piece, siteData)
+    .series-item
+        .div= piece.title
+        +thumbNail(siteData.images[piece.main])
+
+mixin thumbNail(image)
+    img(src=image.imageMetadata.webp[0].url)
+
+mixin debug(o)
+    pre= JSON.stringify(o, null, "  ")
+

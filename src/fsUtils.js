@@ -37,7 +37,7 @@ async function exists(filePath) {
 }
 
 function loggable(o) {
-  return util.inspect(o, { showHidden: false, depth: null, colors: true });
+  return util.inspect(o, { showHidden: false, depth: 4, colors: true });
 }
 
 module.exports = {

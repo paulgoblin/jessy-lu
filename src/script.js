@@ -36,13 +36,13 @@ async function buildSite() {
     ...CONFIG,
     imageGenerationData,
   }).makeSiteData();
-  console.log('Site Data', loggable(lo.omit(siteData, 'images')));
+  console.log('Site Data', loggable(siteData));
 
   // Render page
-  const indexPage = pug.renderFile(path.resolve(__dirname, 'templates/index.pug'), {
-    pageTitle: 'Jessy Lu',
-    pieces: { ...siteData },
-  });
+  const indexPage = pug.renderFile(
+    path.resolve(__dirname, 'templates/index.pug'),
+    { siteData },
+  );
 
   // Write pages to build folder
   const pagesData = [[path.resolve(BUILD_DIR, 'index.html'), indexPage]];
