@@ -1,30 +1,8 @@
 extends ./layouts/main.pug
+include ./mixins/mainPageContent.pug
+
+block title
+    +mainPageTitle(siteData)
 
 block content
-    .main-container
-        h1= siteData.main.title
-        each seriesName in siteData.main.seriesOrder
-            +seriesRow(siteData.series[seriesName], siteData)
-    #indicator.
-        indicator
-
-mixin seriesRow(series, siteData)
-    .series-row
-        each pieceName in series.pieces
-            +seriesItem(siteData.pieces[pieceName], siteData)
-
-mixin seriesItem(piece, siteData)
-    .series-item
-        +detailLink(piece, siteData)
-
-mixin detailLink(piece, siteData)
-    - var mainImage = siteData.images[piece.main]
-    a.detail-link(href=piece.name onclick='clientNav(event)')
-        +thumbnail(mainImage)
-
-mixin thumbnail(image)
-    img.thumbnail(src=image.imageMetadata.webp[0].url)
-
-mixin debug(o)
-    pre= JSON.stringify(o, null, "  ")
-
+    +mainPageContent(piece, siteData)

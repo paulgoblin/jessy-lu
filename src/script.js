@@ -37,12 +37,20 @@ async function buildSite() {
   // Render page
   const indexPage = pug.renderFile(
     path.resolve(__dirname, 'templates/index.pug'),
-    { siteData },
+    { siteData, pretty: true },
   );
+  const detailPages = Object.values(siteData.pieces).map((p) => ({
+    path: p.name,
+    content: pug.renderFile(
+      path.resolve(__dirname, 'templates/detail.pug'),
+      { siteData, detail: p.name, pretty: true },
+    ),
+  }));
 
   // Write pages to build folder
   await Promise.all([
     writeFile(path.resolve(BUILD_DIR, 'index.html'), indexPage),
+    ...detailPages.map((d) => writeFile(path.resolve(BUILD_DIR, `${d.path}.html`), d.content)),
     fs.copyFile(path.resolve(__dirname, 'assets/styles.css'), path.resolve(BUILD_DIR, 'styles.css')),
     fs.copyFile(path.resolve(__dirname, 'assets/index.js'), path.resolve(BUILD_DIR, 'index.js')),
   ]);
