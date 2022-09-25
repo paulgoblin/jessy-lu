@@ -50,6 +50,7 @@ h1 {
 
 .main-container {
     margin: 1rem;
+    background: white;
 }
 
 .series-row {
@@ -71,6 +72,35 @@ h1 {
 
 .thumbnail {
     height: 100%;
+}
+
+.overlay {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1rem;
+    padding-right: 5rem;
+    display: flex;
+    flex-direction: column;
+    background: inherit;
+    align-items: flex-end;
+    width: 40vw;
+}
+
+.overlay-content {
+    margin: 1.5rem;
+}
+
+.detail-image {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.detail-image:first-child {
+    width: 100%;
+    margin: 1rem 0;
+    margin-top: 0;
 }
 
 @media only screen and (min-width: 768px) {

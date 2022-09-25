@@ -3,7 +3,8 @@ include ./mixins/mainPageContent.pug
 include ./mixins/detailPageContent.pug
 
 block title
-    +detailPageTitle(siteData, detail)
+    +detailPageTitle(siteData, pieceName)
 
 block content
-    +mainPageContent(piece, siteData)
+    +detailPageContent(siteData, pieceName)
+    +mainPageContent(siteData)

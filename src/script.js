@@ -43,7 +43,7 @@ async function buildSite() {
     path: p.name,
     content: pug.renderFile(
       path.resolve(__dirname, 'templates/detail.pug'),
-      { siteData, detail: p.name, pretty: true },
+      { siteData, pieceName: p.name, pretty: true },
     ),
   }));
 

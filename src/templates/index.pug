@@ -1,8 +1,12 @@
 extends ./layouts/main.pug
 include ./mixins/mainPageContent.pug
+include ./mixins/detailPageContent.pug
 
 block title
     +mainPageTitle(siteData)
 
 block content
-    +mainPageContent(piece, siteData)
+    +mainPageContent(siteData)
+
+block detailTemplates
+    +detailTemplates(siteData)

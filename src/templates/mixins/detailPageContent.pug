@@ -1,4 +1,31 @@
 
 
-mixin detailPageTitle(siteData, detail)
-    | #{siteData.main.title} | #{siteData.pieces[detail].title}
+mixin detailPageTitle(siteData, pieceName)
+    | #{siteData.main.title} | #{siteData.pieces[pieceName].title}
+
+mixin detailPageContent(siteDate, pieceName)
+    - var piece = siteData.pieces[pieceName]
+    section.overlay
+        +closeButton()
+        .overlay-content
+            each imageName in piece.images
+                - var image = siteData.images[imageName]
+                +detailImage(image)
+
+mixin closeButton()
+    span.
+        ✕
+
+mixin detailImage(image)
+    img.detail-image(src=image.imageMetadata.webp[2].url)
+
+mixin detailTemplates(siteData)
+    each pieceName, piece in siteData.pieces
+        +detailTemplate(piece, siteData)
+
+mixin detailTemplate(piece, siteData)
+    template.
+        #{piece.name}
+
+mixin debug(o)
+    pre= JSON.stringify(o, null, "  ")

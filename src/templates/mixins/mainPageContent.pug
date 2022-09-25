@@ -2,13 +2,11 @@
 mixin mainPageTitle(siteData)
     | #{siteData.main.title}
 
-mixin mainPageContent(piece, siteData)
-    .main-container
-        h1= siteData.main.title
+mixin mainPageContent(siteData)
+    h1= siteData.main.title
+    section 
         each seriesName in siteData.main.seriesOrder
             +seriesRow(siteData.series[seriesName], siteData)
-    #indicator.
-        indicator
 
 mixin seriesRow(series, siteData)
     .series-row

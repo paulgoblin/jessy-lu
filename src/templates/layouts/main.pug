@@ -8,6 +8,9 @@ html(lang="en")
     link(rel="stylesheet" href='styles.css?ts=' + ts)
     script(src='index.js?ts=' + ts).
   body
-    block content
+    .main-container#main-container
+      block content
+      #indicator.
+        indicator
     block detailTemplates
 
