@@ -5,6 +5,7 @@ const lo = require('lodash');
 const glob = require('glob-promise');
 const { exists } = require('./fsUtils');
 
+// TODO: allow as a config
 const FORMAT = 'webp';
 // Cache in the build/img folder, so it gets cleared automatically when we restart the script
 const GENERATION_METADATA_CACHE = path.resolve(__dirname, '../build/img/.generation-metadata-cache.json');

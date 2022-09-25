@@ -28,11 +28,11 @@ async function buildSite() {
   await clearDir(BUILD_DIR, { ignorePath: BUILD_IMG_DIR });
 
   // Generate images (if they don't exist already)
-  const imageMetadata = await ImageGenerator(CONFIG).generateImages();
+  const imageData = await ImageGenerator(CONFIG).generateImages();
   // Generate site data based on yamls.
   const siteData = await SiteDataGenerator({
     ...CONFIG,
-    imageMetadata,
+    imageData,
   }).makeSiteData();
   console.log('siteData', loggable(siteData));
 

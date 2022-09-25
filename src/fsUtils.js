@@ -30,10 +30,8 @@ async function writeFile([filePath, fileContent]) {
 async function exists(filePath) {
   try {
     await fs.access(filePath);
-    console.log(`exists TRUE: ${filePath}`);
     return true;
   } catch (e) {
-    console.log(`exists FALSE: ${filePath}`);
     return false;
   }
 }

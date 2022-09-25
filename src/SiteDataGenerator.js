@@ -3,10 +3,15 @@ const path = require('path');
 const glob = require('glob-promise');
 const YAML = require('yaml');
 const util = require('util');
+const lo = require('lodash');
+
+// TODO: allow as a config
+const FORMAT = 'webp';
 
 function SiteDataGenerator({
   sourceDir,
-  imageMetadata,
+  imageData,
+  sizes,
 }) {
   function filename(filePath) {
     return path.basename(filePath, path.extname(filePath));
@@ -38,21 +43,21 @@ function SiteDataGenerator({
     };
   }
 
-  function getImagePriority(imageName) {
-    const priorityMatch = imageName.match(/\d+/);
-    return priorityMatch ? priorityMatch[0] : 0;
+  function addImagePriority(m) {
+    const priorityMatch = m.imageName.match(/\d+/);
+    return {
+      ...m,
+      priority: priorityMatch ? priorityMatch[0] : 0,
+    };
   }
 
   function createImageData(imagePaths) {
-    const pieceImageMetadata = imagePaths
-      .map((p) => imageMetadata[p])
-      .map((m) => ({
-        ...m,
-        priority: getImagePriority(m.imageName),
-      }));
+    const pieceImage = imagePaths
+      .map((p) => imageData[p])
+      .map(addImagePriority);
     return {
-      main: pieceImageMetadata.find((m) => m.priority === 0),
-      images: pieceImageMetadata,
+      main: pieceImage.find((m) => m.priority === 0),
+      images: pieceImage,
     };
   }
 
