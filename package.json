@@ -11,7 +11,7 @@
   },
   "watch": {
     "test": {
-      "extensions": "pug,js",
+      "extensions": "pug,js,css",
       "patterns": "src"
     }
   },

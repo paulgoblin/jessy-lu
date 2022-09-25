@@ -1,13 +1,9 @@
 const pug = require('pug');
 const path = require('path');
-const lo = require('lodash');
+const fs = require('fs/promises');
 const { clearDir, writeFile, loggable } = require('./fsUtils');
 const SiteDataGenerator = require('./SiteDataGenerator');
 const ImageGenerator = require('./ImageGenerator');
-
-const INDEX_INPUTS = {
-  pageTitle: 'Jessy Lu',
-};
 
 const BUILD_DIR = path.resolve(__dirname, '../build');
 const BUILD_IMG_DIR = path.resolve(BUILD_DIR, 'img');
@@ -45,8 +41,10 @@ async function buildSite() {
   );
 
   // Write pages to build folder
-  const pagesData = [[path.resolve(BUILD_DIR, 'index.html'), indexPage]];
-  await Promise.all(pagesData.map(writeFile));
+  await Promise.all([
+    writeFile(path.resolve(BUILD_DIR, 'index.html'), indexPage),
+    fs.copyFile(path.resolve(__dirname, 'styles.css'), path.resolve(BUILD_DIR, 'styles.css')),
+  ]);
 }
 
 (async function execute() {

@@ -18,7 +18,7 @@ async function clearDir(buildDir, { ignorePath }) {
   );
 }
 
-async function writeFile([filePath, fileContent]) {
+async function writeFile(filePath, fileContent) {
   try {
     await fs.writeFile(filePath, fileContent);
   } catch (e) {
