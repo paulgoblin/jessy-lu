@@ -5,7 +5,10 @@ mixin detailPageTitle(siteData, pieceName)
 
 mixin detailPageContent(siteDate, pieceName)
     - var piece = siteData.pieces[pieceName]
-    section.overlay
+    +pieceOverlay(piece, siteData)
+
+mixin pieceOverlay(piece, siteData)
+    section.overlay#detail
         +closeButton()
         .overlay-content
             each imageName in piece.images
@@ -13,19 +16,20 @@ mixin detailPageContent(siteDate, pieceName)
                 +detailImage(image)
 
 mixin closeButton()
-    span.
-        ✕
+    span
+        a.close-button(href="/" onclick='clientNav(event)').
+            ✕
 
 mixin detailImage(image)
     img.detail-image(src=image.imageMetadata.webp[2].url)
 
 mixin detailTemplates(siteData)
-    each pieceName, piece in siteData.pieces
+    each piece, pieceName in siteData.pieces
         +detailTemplate(piece, siteData)
 
 mixin detailTemplate(piece, siteData)
-    template.
-        #{piece.name}
+    template(id=piece.name, data-piece-title=piece.title)
+        +pieceOverlay(piece, siteData)
 
 mixin debug(o)
     pre= JSON.stringify(o, null, "  ")

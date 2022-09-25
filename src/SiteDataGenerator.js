@@ -4,6 +4,7 @@ const glob = require('glob-promise');
 const YAML = require('yaml');
 const util = require('util');
 const lo = require('lodash');
+const url = require('url');
 
 function SiteDataGenerator({
   sourceDir,
@@ -100,7 +101,7 @@ function SiteDataGenerator({
   }
 
   function nameSquash(name) {
-    return name.toLowerCase().replace(/ /g, '_');
+    return url.domainToASCII(name.toLowerCase().replace(/ /g, '_'));
   }
 
   return {
