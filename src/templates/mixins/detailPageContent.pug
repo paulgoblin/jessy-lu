@@ -21,7 +21,7 @@ mixin closeButton()
             ✕
 
 mixin detailImage(image)
-    img.detail-image(src=image.imageMetadata.webp[2].url)
+    img.detail-image(src='.' + image.imageMetadata.webp[2].url)
 
 mixin detailTemplates(siteData)
     each piece, pieceName in siteData.pieces

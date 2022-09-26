@@ -23,7 +23,7 @@ mixin detailLink(piece, siteData)
         +thumbnail(mainImage)
 
 mixin thumbnail(image)
-    img.thumbnail(src=image.imageMetadata.webp[0].url)
+    img.thumbnail(src='.' + image.imageMetadata.webp[0].url)
 
 mixin debug(o)
     pre= JSON.stringify(o, null, "  ")
