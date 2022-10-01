@@ -7,12 +7,13 @@
     "build": "node ./src/script.js",
     "test": "npm run build && http-server ./build",
     "dev": "npm run clean && npm-watch",
+    "watch": "npm-watch",
     "clean": "rm -rf ./build"
   },
   "watch": {
     "test": {
       "extensions": "pug,js,css",
-      "patterns": "src"
+      "patterns": ["src", "node_modules"]
     }
   },
   "repository": {
