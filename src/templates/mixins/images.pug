@@ -3,7 +3,7 @@ mixin detailImage(image)
     - var medium = formats.find(f => f.url.includes('-medium.'))
     img.detail-image(
         srcset= formats.map(i => i.srcset).join(', ')
-        sizes="(min-width: 768px) 100vw, 40vw"
+        sizes="(min-width: 768px) 40vw, 100vw"
         src='.' + medium.url
     )
 

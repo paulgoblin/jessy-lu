@@ -41,6 +41,10 @@ h1 {
     text-transform: uppercase;
 }
 
+.detail-mode.main-content {
+    visibility: hidden;
+}
+
 #indicator {
     position: absolute;
     top: 0;
@@ -78,20 +82,22 @@ h1 {
     z-index: 1;
     position: absolute;
     right: 0;
+    left: 0;
     top: 2rem;
-    padding: 1rem;
-    padding-top: 0;
-    margin-top: 0.5rem;
+    margin: 1rem;
     display: flex;
     flex-direction: column;
     background: inherit;
-    align-items: flex-end;
-    min-height: 100%;
+    align-items: stretch;
 }
 
 .overlay-content {
     margin: 1.5rem;
     margin-top: 0;
+}
+
+.close-button-wrapper {
+    text-align: right;
 }
 
 .close-button {
@@ -116,6 +122,10 @@ h1 {
         top: 0;
         right: 0;
         color: lightblue;
+    }
+
+    .detail-mode.main-content {
+        visibility: unset;
     }
 
     h1 {
@@ -146,6 +156,8 @@ h1 {
         position: absolute;
         right: 0;
         top: 0;
+        left: auto;
+        margin:auto;
         padding: 1rem;
         padding-right: 5rem;
         display: flex;
