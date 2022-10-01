@@ -1,4 +1,4 @@
-
+include ./images.pug
 
 mixin detailPageTitle(siteData, pieceName)
     | #{siteData.main.title} | #{siteData.pieces[pieceName].title}
@@ -19,9 +19,6 @@ mixin closeButton()
     span
         a.close-button(href="/" onclick='clientNav(event)').
             ✕
-
-mixin detailImage(image)
-    img.detail-image(src='.' + image.imageMetadata.webp[2].url)
 
 mixin detailTemplates(siteData)
     each piece, pieceName in siteData.pieces

@@ -13,11 +13,11 @@ const CONFIG = {
   sourceDir: CONTENT_SOURCE_DIR,
   outputDir: BUILD_IMG_DIR,
   sizes: {
-    // icon: 50,
-    micro: 150,
-    thumb: 300,
+    micro: 75,
+    thumb: 150,
+    small: 300,
     medium: 600,
-    // large: 1000,
+    large: 1000,
   },
 };
 
@@ -63,7 +63,7 @@ function time(fn) {
     const t0 = performance.now();
     const result = await fn(...args);
     const t1 = performance.now();
-    console.log('\x1b[36m%s\x1b[0m', `${fn.name} runtime: ${Math.floor(t1 - t0)} ms`);
+    console.log('\x1b[36m%s\x1b[0m', `${fn.name} runtime: ${Math.floor(t1 - t0) / 1000} s`);
     return result;
   };
 }

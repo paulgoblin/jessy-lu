@@ -1,3 +1,4 @@
+include ./images.pug
 
 mixin mainPageTitle(siteData)
     | #{siteData.main.title}
@@ -21,9 +22,6 @@ mixin detailLink(piece, siteData)
     - var mainImage = siteData.images[piece.main]
     a.detail-link(href=piece.name onclick='clientNav(event)')
         +thumbnail(mainImage)
-
-mixin thumbnail(image)
-    img.thumbnail(src='.' + image.imageMetadata.webp[0].url)
 
 mixin debug(o)
     pre= JSON.stringify(o, null, "  ")
