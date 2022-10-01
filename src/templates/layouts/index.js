@@ -1,3 +1,5 @@
+;(function() {}
+
 function clientNav(e) {
   e.preventDefault();
 
@@ -34,3 +36,5 @@ function navigate(path, title) {
     path,
   );
 }
+
+})();

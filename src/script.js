@@ -51,8 +51,6 @@ async function buildSite() {
   await Promise.all([
     writeFile(path.resolve(BUILD_DIR, 'index.html'), indexPage),
     ...detailPages.map((d) => writeFile(path.resolve(BUILD_DIR, `${d.path}.html`), d.content)),
-    fs.copyFile(path.resolve(__dirname, 'assets/styles.css'), path.resolve(BUILD_DIR, 'styles.css')),
-    fs.copyFile(path.resolve(__dirname, 'assets/index.js'), path.resolve(BUILD_DIR, 'index.js')),
   ]);
 }
 
