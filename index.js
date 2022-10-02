@@ -33,12 +33,14 @@ function manageDialogFocus(e, renderedPath) {
   if (!renderedPath) return;
   if (renderedPath === HOME_PATH) {
     // Set focus on last detail element
-    appState.lastFocusedElement && appState.lastFocusedElement.focus();
+    if (appState.lastFocusedElement) {
+      appState.lastFocusedElement.focus({ preventScroll: true });
+    }
   } else {
     const closeButton = document.getElementById('close');
     // set focus on close button in dialog
     if (closeButton) {
-      closeButton.focus();
+      closeButton.focus({ preventScroll: true });
     }
   }
 }
