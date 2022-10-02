@@ -59,7 +59,7 @@ function getPathTemplate(path) {
 }
 
 function navigate(path, state) {
-  window.history.pushState(
+  window.history.replaceState(
     state,
     '',
     path,
