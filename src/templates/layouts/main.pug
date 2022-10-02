@@ -7,8 +7,8 @@ html(lang="en")
     - var ts = Date.now();
     style
       include ./styles.css
-    script(defer)
-      include ./index.js
+    - var ts = Date.now();
+    script(src='index.js?ts=' + ts defer).
   body
     .main-container#main-container
       block content
