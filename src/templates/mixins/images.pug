@@ -2,7 +2,7 @@ mixin detailImage(image)
     - var formats = image.imageMetadata.webp;
     - var medium = formats.find(f => f.url.includes('-medium.'))
     img.detail-image(
-        srcset= formats.map(i => `.${i.srcset}`).join(', ')
+        srcset= formats.map(i => i.srcset).join(', ')
         sizes="(min-width: 768px) 40vw, 100vw"
         src='.' + medium.url
     )
@@ -19,7 +19,7 @@ mixin thumbnail(image)
     - var mobileWidth = computeRemSize(ratio, 4.5 /* displayHeightRem */)
     img.thumbnail(
         alt!=attributes.alt
-        srcset= formats.map(i => `.${i.srcset}`).join(', ')
+        srcset= formats.map(i => i.srcset).join(', ')
         sizes=`(min-width: 768px) ${desktopWidth} , ${mobileWidth}`
         src='.' + thumb.url
     )
