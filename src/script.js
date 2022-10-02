@@ -52,6 +52,7 @@ async function buildSite() {
     writeFile(path.resolve(BUILD_DIR, 'index.html'), indexPage),
     ...detailPages.map((d) => writeFile(path.resolve(BUILD_DIR, `${d.path}.html`), d.content)),
     fs.copyFile(path.resolve(__dirname, 'templates/layouts/index.js'), path.resolve(BUILD_DIR, 'index.js')),
+    fs.copyFile(path.resolve(__dirname, '../CNAME'), path.resolve(BUILD_DIR, 'CNAME')),
   ]);
 }
 
