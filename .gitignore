@@ -3,3 +3,4 @@ node_modules
 source_content
 src
 .DS_Store
+deploy.sh
