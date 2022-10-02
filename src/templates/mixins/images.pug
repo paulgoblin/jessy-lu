@@ -1,10 +1,10 @@
 mixin detailImage(image)
     - var formats = image.imageMetadata.webp;
-    - var medium = formats.find(f => f.url.includes('-medium.'))
+    - var large = formats.find(f => f.url.includes('-large.'))
+        //- srcset= formats.map(i => i.srcset).join(', ')
+        //- sizes="(min-width: 768px) 40vw, 100vw"
     img.detail-image(
-        srcset= formats.map(i => i.srcset).join(', ')
-        sizes="(min-width: 768px) 40vw, 100vw"
-        src='.' + medium.url
+        src='.' + large.url
     )
 
 mixin thumbnail(image)
