@@ -11,9 +11,10 @@ mixin thumbnail(image)
     - var formats = image.imageMetadata.webp;
     - var thumb = formats.find(f => f.url.includes('-thumb.'))
     - var ratio = thumb.width / thumb.height
-    - var computeRemSize = (ratio, styleSize) => `${Math.round(styleSize * ratio * 100)/100}rem`
-    - var desktopWidth = computeRemSize(ratio, 7)
-    - var mobileWidth = computeRemSize(ratio, 5)
+    - var computeRemSize = (ratio, displayHeightRem) => `${Math.round(height * ratio * 100)/100}rem`
+    //- size must match .thumbnail height in styles.css
+    - var desktopWidth = computeRemSize(ratio, 7 /* displayHeightRem */)
+    - var mobileWidth = computeRemSize(ratio, 4.5 /* displayHeightRem */)
     img.thumbnail(
         srcset= formats.map(i => i.srcset).join(', ')
         sizes=`(min-width: 768px) ${desktopWidth} , ${mobileWidth}`
