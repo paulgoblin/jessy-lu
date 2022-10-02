@@ -20,8 +20,12 @@ mixin seriesItem(piece, siteData)
 
 mixin detailLink(piece, siteData)
     - var mainImage = siteData.images[piece.main]
-    a.detail-link(href=piece.name onclick='clientNav(event)')
-        +thumbnail(mainImage)
+    a.detail-link(
+        href=piece.name
+        onclick='handleClientNav(event)'
+        onfocus='handleDetailFocus(event)'
+    )
+        +thumbnail(mainImage)(alt=`Detail for ${piece.title}`)
 
 mixin debug(o)
     pre= JSON.stringify(o, null, "  ")

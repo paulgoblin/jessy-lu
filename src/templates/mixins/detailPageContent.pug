@@ -8,7 +8,10 @@ mixin detailPageContent(siteDate, pieceName)
     +pieceOverlay(piece, siteData)
 
 mixin pieceOverlay(piece, siteData)
-    section.overlay#detail
+    section.overlay#detail(
+        role="dialog"
+        aria-label= piece.title
+    )
         +closeButton()
         .overlay-content
             each imageName in piece.images
@@ -17,7 +20,10 @@ mixin pieceOverlay(piece, siteData)
 
 mixin closeButton()
     span.close-button-wrapper
-        a.close-button(href="/" onclick='clientNav(event)').
+        a#close.close-button(
+            href="/" onclick='handleClientNav(event)'
+            aria-label="Close"
+        ).
             ✕
 
 mixin detailTemplates(siteData)
