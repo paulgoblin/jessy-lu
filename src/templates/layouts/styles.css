@@ -124,6 +124,10 @@ h1 {
         color: lightblue;
     }
 
+    .main-content {
+        width: 50vw;
+    }
+
     .detail-mode.main-content {
         visibility: unset;
     }
