@@ -1,7 +1,9 @@
 const HOME_PATH = '/';
+const MAX_HISTORY = 1;
 
 const appState = {
   lastFocusedElement: null,
+  hasVisitedHome: window.location.pathname === HOME_PATH,
 };
 
 function handleDetailFocus(e) {
@@ -58,12 +60,28 @@ function getPathTemplate(path) {
   return document.getElementById(pieceName);
 }
 
-function navigate(path, state) {
-  window.history.pushState(
-    state,
-    '',
-    path,
-  );
+function navigate(nextPath, nextState) {
+  const currentPath = window.location.pathname;
+  const next = [nextState, '', nextPath];
+
+  // home -> detail
+  if (currentPath === HOME_PATH) {
+    window.history.pushState(...next);
+  // detail -> home
+  } else if (nextPath === HOME_PATH) {
+    if (appState.hasVisitedHome) {
+      // onpopstate will automatically update appState.historyStack
+      window.history.back();
+    } else {
+      // the app was started on a detail page.
+      window.history.replaceState(...next);
+      appState.hasVisitedHome = true;
+    }
+  // detail -> detail
+  } else {
+    // navigating from detail -> detail
+    window.history.replaceState(...next);
+  }
 }
 
 // Renders a page for a path, if that page exists. Otherwise renders the home page
