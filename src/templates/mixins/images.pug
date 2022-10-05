@@ -3,9 +3,12 @@ mixin detailImage(image)
     - var large = formats.find(f => f.url.includes('-large.'))
         //- srcset= formats.map(i => i.srcset).join(', ')
         //- sizes="(min-width: 768px) 40vw, 100vw"
-    img.detail-image(
-        src='.' + large.url
+    div.detail-image-wrapper(
+        style=`padding-top: calc(${large.height/large.width} * 100%)`
     )
+        img.detail-image(
+            src='.' + large.url
+        )
 
 mixin thumbnail(image)
     - var formats = image.imageMetadata.webp;
