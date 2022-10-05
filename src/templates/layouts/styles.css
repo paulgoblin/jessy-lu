@@ -37,9 +37,8 @@ h6 {
 
 a {
     color: inherit;
-    text-decoration: auto;
+    text-decoration: none;
 }
-
 
 h1 {
     font-size: 1.3em;
@@ -135,7 +134,15 @@ h1 {
 
     .detail-mode.main-content {
         visibility: unset;
+    }
+
+    .detail-mode .detail-link {
         opacity: 0.5;
+        transition: opacity 50ms;
+    }
+
+    .detail-mode .detail-link:hover {
+        opacity: 1;
     }
 
     h1 {
