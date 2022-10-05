@@ -115,15 +115,24 @@ h1 {
     text-decoration: auto;
 }
 
-.detail-image {
+.detail-image-wrapper {
+    position: relative;
+    height: 0;
     width: 100%;
     margin: 1rem 0;
 }
 
-.detail-image:first-child {
-    width: 100%;
-    margin: 1rem 0;
+.detail-image-wrapper:first-child {
     margin-top: 0;
+
+}
+
+.detail-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    height: auto;
 }
 
 @media only screen and (min-width: 768px) {
@@ -195,11 +204,13 @@ h1 {
 
     .overlay-content {
         margin: 1.5rem;
+        /* something is wrong here */
+        width: calc(100% - 3rem);
     }
 }
     </style>
     <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text class='favicon' y=%22.9em%22 font-size=%2290%22&gt;🍈&lt;/text&gt;&lt;/svg&gt;">
-    <script src="index.js?ts=1664953637726" defer></script>
+    <script src="index.js?ts=1664955925497" defer></script>
   </head>
   <body>
     <div class="main-container" id="main-container"><a class="detail-link" href="/" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)">
@@ -261,7 +272,10 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="木人木人木人木"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/木人木人木人木-large.webp"/><img class="detail-image" src="./img/木人木人木人木_detail_1-large.webp"/><img class="detail-image" src="./img/木人木人木人木_detail_2-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.5 * 100%)"><img class="detail-image" src="./img/木人木人木人木-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.8 * 100%)"><img class="detail-image" src="./img/木人木人木人木_detail_1-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.8 * 100%)"><img class="detail-image" src="./img/木人木人木人木_detail_2-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -269,7 +283,11 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Image Processing I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/image_processing_i-large.webp"/><img class="detail-image" src="./img/image_processing_i_detail_1-large.webp"/><img class="detail-image" src="./img/image_processing_i_detail_2-large.webp"/><img class="detail-image" src="./img/image_processing_i_detail_3-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.115 * 100%)"><img class="detail-image" src="./img/image_processing_i-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(1.25 * 100%)"><img class="detail-image" src="./img/image_processing_i_detail_1-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.8 * 100%)"><img class="detail-image" src="./img/image_processing_i_detail_2-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.8 * 100%)"><img class="detail-image" src="./img/image_processing_i_detail_3-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -277,7 +295,8 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Image Processing II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/image_processing06-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.115 * 100%)"><img class="detail-image" src="./img/image_processing06-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -285,7 +304,8 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/uninhabitable_spaces_i-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.275 * 100%)"><img class="detail-image" src="./img/uninhabitable_spaces_i-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -293,7 +313,8 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/uninhabitable_spaces_ii-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.267 * 100%)"><img class="detail-image" src="./img/uninhabitable_spaces_ii-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -301,7 +322,8 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/uninhabitable_spaces_iii-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.264 * 100%)"><img class="detail-image" src="./img/uninhabitable_spaces_iii-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -309,7 +331,9 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/soft_screen_i-large.webp"/><img class="detail-image" src="./img/soft_screen_i_detail_1-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(0.976 * 100%)"><img class="detail-image" src="./img/soft_screen_i-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.714 * 100%)"><img class="detail-image" src="./img/soft_screen_i_detail_1-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -317,7 +341,9 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/soft_screen_ii-large.webp"/><img class="detail-image" src="./img/soft_screen_ii_detail_1-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(0.696 * 100%)"><img class="detail-image" src="./img/soft_screen_ii-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.714 * 100%)"><img class="detail-image" src="./img/soft_screen_ii_detail_1-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -325,7 +351,9 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/soft_screen_iii-large.webp"/><img class="detail-image" src="./img/soft_screen_iii_detail_1-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(0.497 * 100%)"><img class="detail-image" src="./img/soft_screen_iii-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.714 * 100%)"><img class="detail-image" src="./img/soft_screen_iii_detail_1-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -333,7 +361,8 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="CMYK I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/cmyk_i-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.294 * 100%)"><img class="detail-image" src="./img/cmyk_i-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -341,7 +370,8 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="CMYK II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/cmyk_ii-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.294 * 100%)"><img class="detail-image" src="./img/cmyk_ii-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -349,7 +379,8 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="CMYK III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/cmyk_iii-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.293 * 100%)"><img class="detail-image" src="./img/cmyk_iii-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -357,7 +388,8 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="CMYK IV"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/cmyk_iv-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.294 * 100%)"><img class="detail-image" src="./img/cmyk_iv-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -365,7 +397,10 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Render I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/render_i-large.webp"/><img class="detail-image" src="./img/render_i_detail_1-large.webp"/><img class="detail-image" src="./img/render_i_detail_2-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(0.589 * 100%)"><img class="detail-image" src="./img/render_i-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.666 * 100%)"><img class="detail-image" src="./img/render_i_detail_1-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.666 * 100%)"><img class="detail-image" src="./img/render_i_detail_2-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -373,7 +408,8 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Render II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/render_ii-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(1.4 * 100%)"><img class="detail-image" src="./img/render_ii-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -381,7 +417,10 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Screensaver"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/screensaver-large.webp"/><img class="detail-image" src="./img/screensaver_detail_1-large.webp"/><img class="detail-image" src="./img/screensaver_detail_2-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(0.75 * 100%)"><img class="detail-image" src="./img/screensaver-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.666 * 100%)"><img class="detail-image" src="./img/screensaver_detail_1-large.webp"/></div>
+          <div class="detail-image-wrapper" style="padding-top: calc(0.666 * 100%)"><img class="detail-image" src="./img/screensaver_detail_2-large.webp"/></div>
         </div>
       </section>
     </template>
@@ -389,7 +428,8 @@ h1 {
       <section class="overlay" id="detail" role="dialog" aria-label="Car Ads"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
             ✕
             </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/car_ads-large.webp"/>
+        <div class="overlay-content">
+          <div class="detail-image-wrapper" style="padding-top: calc(0.762 * 100%)"><img class="detail-image" src="./img/car_ads-large.webp"/></div>
         </div>
       </section>
     </template>
