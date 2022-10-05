@@ -10,13 +10,15 @@ function handleDetailFocus(e) {
 
 function handleClientNav(e) {
   e.preventDefault();
-  const renderedPath = clientNav(e.currentTarget.pathname);
+  const decodedPath = decodeURI(e.currentTarget.pathname);
+  const renderedPath = clientNav(decodedPath);
   manageDialogFocus(e, renderedPath);
 }
 
 // Returns the path of the page that was navigated to, if any.
 function clientNav(nextPath) {
-  if (nextPath === location.pathname) return;
+  const currentPath = decodeURI(location.pathname);
+  if (nextPath === currentPath) return;
   const nextState = getPathState(nextPath);
   const renderedPath = renderPage(nextPath, nextState);
   navigate(renderedPath, nextState);
@@ -24,7 +26,8 @@ function clientNav(nextPath) {
 }
 
 function handlePopState(e) {
-  const renderedPath = renderPage(location.pathname, e.state);
+  const nextPath = decodeURI(location.pathname);
+  const renderedPath = renderPage(nextPath, e.state);
   manageDialogFocus(null, renderedPath);
 }
 window.onpopstate = handlePopState;
