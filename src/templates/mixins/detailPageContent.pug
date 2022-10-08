@@ -27,14 +27,14 @@ mixin closeButton()
             aria-label="Close"
             ontouchstart=""
         ).
-            ⨉
+            ✕
 
 mixin detailTemplates(siteData)
     each piece, pieceName in siteData.pieces
         +detailTemplate(piece, siteData)
 
 mixin detailTemplate(piece, siteData)
-    template(id=piece.name, data-piece-title=piece.title)
+    template(id=piece.url, data-piece-title=piece.title)
         +pieceOverlay(piece, siteData)
 
 mixin debug(o)

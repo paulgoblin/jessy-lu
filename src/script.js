@@ -40,7 +40,7 @@ async function buildSite() {
     { siteData, pretty: true },
   );
   const detailPages = Object.values(siteData.pieces).map((p) => ({
-    path: p.name,
+    path: p.url,
     content: pug.renderFile(
       path.resolve(__dirname, 'templates/detail.pug'),
       { siteData, pieceName: p.name, pretty: true },

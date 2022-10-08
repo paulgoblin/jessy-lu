@@ -68,6 +68,7 @@ function SiteDataGenerator({
 
     return {
       title: pieceContent.title,
+      url: pieceContent.url || nameSquash(pieceContent.title),
       name: nameSquash(pieceContent.title),
       main: pieceImages[0],
       images: pieceImages,

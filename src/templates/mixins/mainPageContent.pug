@@ -35,7 +35,7 @@ mixin seriesItem(piece, siteData)
 mixin detailLink(piece, siteData)
     - var mainImage = siteData.images[piece.main]
     a.detail-link(
-        href=`./${piece.name}`
+        href=`./${piece.url}`
         onclick='handleClientNav(event)'
         onfocus='handleDetailFocus(event)'
         ontouchstart=""
