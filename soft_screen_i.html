@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Jessy Lu | Soft Screen I
+    <title>jessy lu | Soft Screen I
     </title>
-    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
 * {
     margin: 0;
@@ -47,9 +47,10 @@ a {
 }
 
 h1 {
-    font-size: 1.3em;
-    font-weight: 100;
-    text-transform: uppercase;
+    font-size: 1.5em; /* matches close-button-wrapper font-size */
+    font-weight: normal;
+    text-transform: lowercase;
+    letter-spacing: 0.06em;
 }
 
 .detail-mode.main-content {
@@ -63,7 +64,17 @@ h1 {
     color: pink;
 }
 
+.header-link {
+    padding: 0.3em;
+    margin: -0.3em;
+}
+
+.header-link:active {
+    text-decoration: overline dotted;
+}
+
 .main-container {
+    /* margin must match overlay margin */
     margin: 1rem;
     background: white;
 }
@@ -91,28 +102,39 @@ h1 {
 .overlay {
     z-index: 1;
     position: absolute;
+    top: 0;
     right: 0;
     left: 0;
-    top: 2rem;
+    /* margin must match main-container margin */
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    background: inherit;
-    align-items: stretch;
+    pointer-events: none;
 }
 
 .overlay-content {
+    pointer-events: auto;
+    background: inherit;
     margin: 1.5rem;
-    margin-top: 0;
 }
 
 .close-button-wrapper {
     text-align: right;
+    background: inherit;
+    font-size: 1.5rem; /* matches h1 height */
 }
 
 .close-button {
-    color: inherit;
-    text-decoration: auto;
+    font-weight: bold;
+    pointer-events: auto;
+    font-size: 1.2rem;
+    vertical-align: middle;
+    padding: 0.8em;
+    margin: -0.8em;
+}
+
+.close-button:active {
+    text-decoration: overline dotted;
 }
 
 .detail-image-wrapper {
@@ -143,8 +165,22 @@ h1 {
         color: lightblue;
     }
 
+    .main-container {
+        /* margin must match overlay margin */
+        margin: 1rem 4rem;
+    }
+
     .main-content {
         width: 50vw;
+    }
+
+    .header-link:hover {
+        text-decoration: overline dotted;
+    }
+
+    .close-button:hover {
+        text-decoration: overline dotted;
+        font-weight: bold;
     }
 
     .detail-mode.main-content {
@@ -153,7 +189,6 @@ h1 {
 
     .detail-mode .detail-link {
         opacity: 0.5;
-        transition: opacity 50ms;
     }
 
     .detail-mode .detail-link:hover {
@@ -161,9 +196,7 @@ h1 {
     }
 
     h1 {
-        font-size: 2.5em;
-        font-weight: 100;
-        text-transform: uppercase;
+        font-size: 2.5em; /* matches close-button wrapper font-size */
     }
 
     .series-row {
@@ -187,97 +220,93 @@ h1 {
     }
 
     .overlay {
-        z-index: 1;
-        position: absolute;
-        right: 0;
-        top: 0;
         left: auto;
-        margin:auto;
-        padding: 1rem;
-        padding-right: 5rem;
-        display: flex;
-        flex-direction: column;
-        background: inherit;
-        align-items: flex-end;
+        /* margin must match main-container margin */
+        margin: 1rem 4rem;
         width: 40vw;
     }
 
     .overlay-content {
-        margin: 1.5rem;
-        /* something is wrong here */
-        width: calc(100% - 3rem);
+        /* Right margin matches the vertical spacing from close button
+        so that the close button is diagonal.
+        See https://github.com/paulgoblin/jessy-lu/issues/16 */
+        margin: 0 1.8em;
+    }
+
+    .close-button-wrapper {
+        font-size: 2.5em; /* matches h1 height */
     }
 }
     </style>
     <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text class='favicon' y=%22.9em%22 font-size=%2290%22&gt;🍈&lt;/text&gt;&lt;/svg&gt;">
-    <script src="index.js?ts=1664955925602" defer></script>
+    <script src="index.js?ts=1665270781045" defer></script>
   </head>
   <body>
     <div class="main-container" id="main-container">
-      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
           <div class="detail-image-wrapper" style="padding-top: calc(0.976 * 100%)"><img class="detail-image" src="./img/soft_screen_i-large.webp"/></div>
           <div class="detail-image-wrapper" style="padding-top: calc(0.714 * 100%)"><img class="detail-image" src="./img/soft_screen_i_detail_1-large.webp"/></div>
         </div>
-      </section><a class="detail-link" href="/" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)">
-        <h1>Jessy Lu</h1></a>
+      </section>
+      <h1><a class="header-link" href="/" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart="">Jessy Lu</a></h1>
       <section class="main-content detail-mode" id="main-content">
         <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./木人木人木人木" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for 木人木人木人木" srcset="/img/木人木人木人木-micro.webp 75w, /img/木人木人木人木-thumb.webp 150w, /img/木人木人木人木-small.webp 300w, /img/木人木人木人木-medium.webp 600w, /img/木人木人木人木-large.webp 1000w" sizes="(min-width: 768px) 4.67rem , 3rem" src="./img/木人木人木人木-thumb.webp"/></a>
+          <div class="series-item"><a class="detail-link" href="./木人木人木人木" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for 木人木人木人木" srcset="/img/木人木人木人木-micro.webp 75w, /img/木人木人木人木-thumb.webp 150w, /img/木人木人木人木-small.webp 300w, /img/木人木人木人木-medium.webp 600w, /img/木人木人木人木-large.webp 1000w" sizes="(min-width: 768px) 4.67rem , 3rem" src="./img/木人木人木人木-thumb.webp"/></a>
           </div>
         </div>
         <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./image_processing_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Image Processing I" srcset="/img/image_processing_i-micro.webp 75w, /img/image_processing_i-thumb.webp 150w, /img/image_processing_i-small.webp 300w, /img/image_processing_i-medium.webp 600w, /img/image_processing_i-large.webp 1000w" sizes="(min-width: 768px) 6.29rem , 4.04rem" src="./img/image_processing_i-thumb.webp"/></a>
+          <div class="series-item"><a class="detail-link" href="./image_processing_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Image Processing I" srcset="/img/image_processing_i-micro.webp 75w, /img/image_processing_i-thumb.webp 150w, /img/image_processing_i-small.webp 300w, /img/image_processing_i-medium.webp 600w, /img/image_processing_i-large.webp 1000w" sizes="(min-width: 768px) 6.29rem , 4.04rem" src="./img/image_processing_i-thumb.webp"/></a>
           </div>
-          <div class="series-item"><a class="detail-link" href="./image_processing_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Image Processing II" srcset="/img/image_processing06-micro.webp 75w, /img/image_processing06-thumb.webp 150w, /img/image_processing06-small.webp 300w, /img/image_processing06-medium.webp 600w, /img/image_processing06-large.webp 1000w" sizes="(min-width: 768px) 6.29rem , 4.04rem" src="./img/image_processing06-thumb.webp"/></a>
-          </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./uninhabitable_spaces_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Uninhabitable Spaces I" srcset="/img/uninhabitable_spaces_i-micro.webp 75w, /img/uninhabitable_spaces_i-thumb.webp 150w, /img/uninhabitable_spaces_i-small.webp 300w, /img/uninhabitable_spaces_i-medium.webp 600w, /img/uninhabitable_spaces_i-large.webp 1000w" sizes="(min-width: 768px) 5.5rem , 3.53rem" src="./img/uninhabitable_spaces_i-thumb.webp"/></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./uninhabitable_spaces_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Uninhabitable Spaces II" srcset="/img/uninhabitable_spaces_ii-micro.webp 75w, /img/uninhabitable_spaces_ii-thumb.webp 150w, /img/uninhabitable_spaces_ii-small.webp 300w, /img/uninhabitable_spaces_ii-medium.webp 600w, /img/uninhabitable_spaces_ii-large.webp 1000w" sizes="(min-width: 768px) 5.53rem , 3.55rem" src="./img/uninhabitable_spaces_ii-thumb.webp"/></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./uninhabitable_spaces_iii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Uninhabitable Spaces III" srcset="/img/uninhabitable_spaces_iii-micro.webp 75w, /img/uninhabitable_spaces_iii-thumb.webp 150w, /img/uninhabitable_spaces_iii-small.webp 300w, /img/uninhabitable_spaces_iii-medium.webp 600w, /img/uninhabitable_spaces_iii-large.webp 1000w" sizes="(min-width: 768px) 5.56rem , 3.57rem" src="./img/uninhabitable_spaces_iii-thumb.webp"/></a>
+          <div class="series-item"><a class="detail-link" href="./image_processing_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Image Processing II" srcset="/img/image_processing06-micro.webp 75w, /img/image_processing06-thumb.webp 150w, /img/image_processing06-small.webp 300w, /img/image_processing06-medium.webp 600w, /img/image_processing06-large.webp 1000w" sizes="(min-width: 768px) 6.29rem , 4.04rem" src="./img/image_processing06-thumb.webp"/></a>
           </div>
         </div>
         <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./soft_screen_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Soft Screen I" srcset="/img/soft_screen_i-micro.webp 75w, /img/soft_screen_i-thumb.webp 150w, /img/soft_screen_i-small.webp 300w, /img/soft_screen_i-medium.webp 600w, /img/soft_screen_i-large.webp 1000w" sizes="(min-width: 768px) 7.19rem , 4.62rem" src="./img/soft_screen_i-thumb.webp"/></a>
+          <div class="series-item"><a class="detail-link" href="./uninhabitable_spaces_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Uninhabitable Spaces I" srcset="/img/uninhabitable_spaces_i-micro.webp 75w, /img/uninhabitable_spaces_i-thumb.webp 150w, /img/uninhabitable_spaces_i-small.webp 300w, /img/uninhabitable_spaces_i-medium.webp 600w, /img/uninhabitable_spaces_i-large.webp 1000w" sizes="(min-width: 768px) 5.5rem , 3.53rem" src="./img/uninhabitable_spaces_i-thumb.webp"/></a>
           </div>
-          <div class="series-item"><a class="detail-link" href="./soft_screen_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Soft Screen II" srcset="/img/soft_screen_ii-micro.webp 75w, /img/soft_screen_ii-thumb.webp 150w, /img/soft_screen_ii-small.webp 300w, /img/soft_screen_ii-medium.webp 600w, /img/soft_screen_ii-large.webp 1000w" sizes="(min-width: 768px) 10.1rem , 6.49rem" src="./img/soft_screen_ii-thumb.webp"/></a>
+          <div class="series-item"><a class="detail-link" href="./uninhabitable_spaces_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Uninhabitable Spaces II" srcset="/img/uninhabitable_spaces_ii-micro.webp 75w, /img/uninhabitable_spaces_ii-thumb.webp 150w, /img/uninhabitable_spaces_ii-small.webp 300w, /img/uninhabitable_spaces_ii-medium.webp 600w, /img/uninhabitable_spaces_ii-large.webp 1000w" sizes="(min-width: 768px) 5.53rem , 3.55rem" src="./img/uninhabitable_spaces_ii-thumb.webp"/></a>
           </div>
-          <div class="series-item"><a class="detail-link" href="./soft_screen_iii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Soft Screen III" srcset="/img/soft_screen_iii-micro.webp 75w, /img/soft_screen_iii-thumb.webp 150w, /img/soft_screen_iii-small.webp 300w, /img/soft_screen_iii-medium.webp 600w, /img/soft_screen_iii-large.webp 1000w" sizes="(min-width: 768px) 14.19rem , 9.12rem" src="./img/soft_screen_iii-thumb.webp"/></a>
-          </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./cmyk_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for CMYK I" srcset="/img/cmyk_i-micro.webp 75w, /img/cmyk_i-thumb.webp 150w, /img/cmyk_i-small.webp 300w, /img/cmyk_i-medium.webp 600w, /img/cmyk_i-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" src="./img/cmyk_i-thumb.webp"/></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./cmyk_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for CMYK II" srcset="/img/cmyk_ii-micro.webp 75w, /img/cmyk_ii-thumb.webp 150w, /img/cmyk_ii-small.webp 300w, /img/cmyk_ii-medium.webp 600w, /img/cmyk_ii-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" src="./img/cmyk_ii-thumb.webp"/></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./cmyk_iii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for CMYK III" srcset="/img/cmyk_iii-micro.webp 75w, /img/cmyk_iii-thumb.webp 150w, /img/cmyk_iii-small.webp 300w, /img/cmyk_iii-medium.webp 600w, /img/cmyk_iii-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" src="./img/cmyk_iii-thumb.webp"/></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./cmyk_iv" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for CMYK IV" srcset="/img/cmyk_iv-micro.webp 75w, /img/cmyk_iv-thumb.webp 150w, /img/cmyk_iv-small.webp 300w, /img/cmyk_iv-medium.webp 600w, /img/cmyk_iv-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" src="./img/cmyk_iv-thumb.webp"/></a>
+          <div class="series-item"><a class="detail-link" href="./uninhabitable_spaces_iii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Uninhabitable Spaces III" srcset="/img/uninhabitable_spaces_iii-micro.webp 75w, /img/uninhabitable_spaces_iii-thumb.webp 150w, /img/uninhabitable_spaces_iii-small.webp 300w, /img/uninhabitable_spaces_iii-medium.webp 600w, /img/uninhabitable_spaces_iii-large.webp 1000w" sizes="(min-width: 768px) 5.56rem , 3.57rem" src="./img/uninhabitable_spaces_iii-thumb.webp"/></a>
           </div>
         </div>
         <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./render_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Render I" srcset="/img/render_i-micro.webp 75w, /img/render_i-thumb.webp 150w, /img/render_i-small.webp 300w, /img/render_i-medium.webp 600w, /img/render_i-large.webp 1000w" sizes="(min-width: 768px) 11.93rem , 7.67rem" src="./img/render_i-thumb.webp"/></a>
+          <div class="series-item"><a class="detail-link" href="./soft_screen_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Soft Screen I" srcset="/img/soft_screen_i-micro.webp 75w, /img/soft_screen_i-thumb.webp 150w, /img/soft_screen_i-small.webp 300w, /img/soft_screen_i-medium.webp 600w, /img/soft_screen_i-large.webp 1000w" sizes="(min-width: 768px) 7.19rem , 4.62rem" src="./img/soft_screen_i-thumb.webp"/></a>
           </div>
-          <div class="series-item"><a class="detail-link" href="./render_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Render II" srcset="/img/render_ii-micro.webp 75w, /img/render_ii-thumb.webp 150w, /img/render_ii-small.webp 300w, /img/render_ii-medium.webp 600w, /img/render_ii-large.webp 1000w" sizes="(min-width: 768px) 5rem , 3.21rem" src="./img/render_ii-thumb.webp"/></a>
+          <div class="series-item"><a class="detail-link" href="./soft_screen_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Soft Screen II" srcset="/img/soft_screen_ii-micro.webp 75w, /img/soft_screen_ii-thumb.webp 150w, /img/soft_screen_ii-small.webp 300w, /img/soft_screen_ii-medium.webp 600w, /img/soft_screen_ii-large.webp 1000w" sizes="(min-width: 768px) 10.1rem , 6.49rem" src="./img/soft_screen_ii-thumb.webp"/></a>
           </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./screensaver" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Screensaver" srcset="/img/screensaver-micro.webp 75w, /img/screensaver-thumb.webp 150w, /img/screensaver-small.webp 300w, /img/screensaver-medium.webp 600w, /img/screensaver-large.webp 1000w" sizes="(min-width: 768px) 9.38rem , 6.03rem" src="./img/screensaver-thumb.webp"/></a>
+          <div class="series-item"><a class="detail-link" href="./soft_screen_iii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Soft Screen III" srcset="/img/soft_screen_iii-micro.webp 75w, /img/soft_screen_iii-thumb.webp 150w, /img/soft_screen_iii-small.webp 300w, /img/soft_screen_iii-medium.webp 600w, /img/soft_screen_iii-large.webp 1000w" sizes="(min-width: 768px) 14.19rem , 9.12rem" src="./img/soft_screen_iii-thumb.webp"/></a>
           </div>
         </div>
         <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./car_ads" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)"><img class="thumbnail" alt="Detail for Car Ads" srcset="/img/car_ads-micro.webp 75w, /img/car_ads-thumb.webp 150w, /img/car_ads-small.webp 300w, /img/car_ads-medium.webp 600w, /img/car_ads-large.webp 1000w" sizes="(min-width: 768px) 9.21rem , 5.92rem" src="./img/car_ads-thumb.webp"/></a>
+          <div class="series-item"><a class="detail-link" href="./cmyk_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for CMYK I" srcset="/img/cmyk_i-micro.webp 75w, /img/cmyk_i-thumb.webp 150w, /img/cmyk_i-small.webp 300w, /img/cmyk_i-medium.webp 600w, /img/cmyk_i-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" src="./img/cmyk_i-thumb.webp"/></a>
+          </div>
+          <div class="series-item"><a class="detail-link" href="./cmyk_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for CMYK II" srcset="/img/cmyk_ii-micro.webp 75w, /img/cmyk_ii-thumb.webp 150w, /img/cmyk_ii-small.webp 300w, /img/cmyk_ii-medium.webp 600w, /img/cmyk_ii-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" src="./img/cmyk_ii-thumb.webp"/></a>
+          </div>
+          <div class="series-item"><a class="detail-link" href="./cmyk_iii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for CMYK III" srcset="/img/cmyk_iii-micro.webp 75w, /img/cmyk_iii-thumb.webp 150w, /img/cmyk_iii-small.webp 300w, /img/cmyk_iii-medium.webp 600w, /img/cmyk_iii-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" src="./img/cmyk_iii-thumb.webp"/></a>
+          </div>
+          <div class="series-item"><a class="detail-link" href="./cmyk_iv" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for CMYK IV" srcset="/img/cmyk_iv-micro.webp 75w, /img/cmyk_iv-thumb.webp 150w, /img/cmyk_iv-small.webp 300w, /img/cmyk_iv-medium.webp 600w, /img/cmyk_iv-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" src="./img/cmyk_iv-thumb.webp"/></a>
+          </div>
+        </div>
+        <div class="series-row">
+          <div class="series-item"><a class="detail-link" href="./render_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Render I" srcset="/img/render_i-micro.webp 75w, /img/render_i-thumb.webp 150w, /img/render_i-small.webp 300w, /img/render_i-medium.webp 600w, /img/render_i-large.webp 1000w" sizes="(min-width: 768px) 11.93rem , 7.67rem" src="./img/render_i-thumb.webp"/></a>
+          </div>
+          <div class="series-item"><a class="detail-link" href="./render_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Render II" srcset="/img/render_ii-micro.webp 75w, /img/render_ii-thumb.webp 150w, /img/render_ii-small.webp 300w, /img/render_ii-medium.webp 600w, /img/render_ii-large.webp 1000w" sizes="(min-width: 768px) 5rem , 3.21rem" src="./img/render_ii-thumb.webp"/></a>
+          </div>
+        </div>
+        <div class="series-row">
+          <div class="series-item"><a class="detail-link" href="./screensaver" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Screensaver" srcset="/img/screensaver-micro.webp 75w, /img/screensaver-thumb.webp 150w, /img/screensaver-small.webp 300w, /img/screensaver-medium.webp 600w, /img/screensaver-large.webp 1000w" sizes="(min-width: 768px) 9.38rem , 6.03rem" src="./img/screensaver-thumb.webp"/></a>
+          </div>
+        </div>
+        <div class="series-row">
+          <div class="series-item"><a class="detail-link" href="./car_ads" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" alt="Detail for Car Ads" srcset="/img/car_ads-micro.webp 75w, /img/car_ads-thumb.webp 150w, /img/car_ads-small.webp 300w, /img/car_ads-medium.webp 600w, /img/car_ads-large.webp 1000w" sizes="(min-width: 768px) 9.21rem , 5.92rem" src="./img/car_ads-thumb.webp"/></a>
           </div>
         </div>
       </section>
     </div>
     <template id="木人木人木人木" data-piece-title="木人木人木人木">
-      <section class="overlay" id="detail" role="dialog" aria-label="木人木人木人木"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="木人木人木人木"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -288,7 +317,7 @@ h1 {
       </section>
     </template>
     <template id="image_processing_i" data-piece-title="Image Processing I">
-      <section class="overlay" id="detail" role="dialog" aria-label="Image Processing I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Image Processing I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -300,7 +329,7 @@ h1 {
       </section>
     </template>
     <template id="image_processing_ii" data-piece-title="Image Processing II">
-      <section class="overlay" id="detail" role="dialog" aria-label="Image Processing II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Image Processing II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -309,7 +338,7 @@ h1 {
       </section>
     </template>
     <template id="uninhabitable_spaces_i" data-piece-title="Uninhabitable Spaces I">
-      <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -318,7 +347,7 @@ h1 {
       </section>
     </template>
     <template id="uninhabitable_spaces_ii" data-piece-title="Uninhabitable Spaces II">
-      <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -327,7 +356,7 @@ h1 {
       </section>
     </template>
     <template id="uninhabitable_spaces_iii" data-piece-title="Uninhabitable Spaces III">
-      <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -336,7 +365,7 @@ h1 {
       </section>
     </template>
     <template id="soft_screen_i" data-piece-title="Soft Screen I">
-      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -346,7 +375,7 @@ h1 {
       </section>
     </template>
     <template id="soft_screen_ii" data-piece-title="Soft Screen II">
-      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -356,7 +385,7 @@ h1 {
       </section>
     </template>
     <template id="soft_screen_iii" data-piece-title="Soft Screen III">
-      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -366,7 +395,7 @@ h1 {
       </section>
     </template>
     <template id="cmyk_i" data-piece-title="CMYK I">
-      <section class="overlay" id="detail" role="dialog" aria-label="CMYK I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="CMYK I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -375,7 +404,7 @@ h1 {
       </section>
     </template>
     <template id="cmyk_ii" data-piece-title="CMYK II">
-      <section class="overlay" id="detail" role="dialog" aria-label="CMYK II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="CMYK II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -384,7 +413,7 @@ h1 {
       </section>
     </template>
     <template id="cmyk_iii" data-piece-title="CMYK III">
-      <section class="overlay" id="detail" role="dialog" aria-label="CMYK III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="CMYK III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -393,7 +422,7 @@ h1 {
       </section>
     </template>
     <template id="cmyk_iv" data-piece-title="CMYK IV">
-      <section class="overlay" id="detail" role="dialog" aria-label="CMYK IV"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="CMYK IV"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -402,7 +431,7 @@ h1 {
       </section>
     </template>
     <template id="render_i" data-piece-title="Render I">
-      <section class="overlay" id="detail" role="dialog" aria-label="Render I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Render I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -413,7 +442,7 @@ h1 {
       </section>
     </template>
     <template id="render_ii" data-piece-title="Render II">
-      <section class="overlay" id="detail" role="dialog" aria-label="Render II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Render II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -422,7 +451,7 @@ h1 {
       </section>
     </template>
     <template id="screensaver" data-piece-title="Screensaver">
-      <section class="overlay" id="detail" role="dialog" aria-label="Screensaver"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Screensaver"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
@@ -433,7 +462,7 @@ h1 {
       </section>
     </template>
     <template id="car_ads" data-piece-title="Car Ads">
-      <section class="overlay" id="detail" role="dialog" aria-label="Car Ads"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close">
+      <section class="overlay" id="detail" role="dialog" aria-label="Car Ads"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
             ✕
             </a></span>
         <div class="overlay-content">
