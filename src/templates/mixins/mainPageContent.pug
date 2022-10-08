@@ -1,7 +1,14 @@
 include ./images.pug
 
-mixin mainPageTitle(siteData)
-    | #{siteData.main.title}
+mixin pageTitle(siteData, pieceName)
+    - var mainTitle = siteData.main.title.toLowerCase();
+    if (pieceName)
+        | #{mainTitle} | #{siteData.pieces[pieceName].title}
+    else
+        | #{mainTitle}
+
+mixin mainPageTitle(siteData, pieceName)
+    +pageTitle(siteData)
 
 mixin mainPageContent(siteData, options = {})
     a.detail-link(

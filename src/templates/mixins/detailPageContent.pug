@@ -1,7 +1,8 @@
 include ./images.pug
+include ./mainPageContent.pug
 
 mixin detailPageTitle(siteData, pieceName)
-    | #{siteData.main.title} | #{siteData.pieces[pieceName].title}
+    +pageTitle(siteData, pieceName)
 
 mixin detailPageContent(siteDate, pieceName)
     - var piece = siteData.pieces[pieceName]
