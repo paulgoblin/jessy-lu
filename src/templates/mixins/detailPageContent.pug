@@ -22,10 +22,12 @@ mixin pieceOverlay(piece, siteData)
 mixin closeButton()
     span.close-button-wrapper
         a#close.close-button(
-            href="/" onclick='handleClientNav(event)'
+            href="/"
+            onclick='handleClientNav(event)'
             aria-label="Close"
+            ontouchstart=""
         ).
-            ✕
+            ⨉
 
 mixin detailTemplates(siteData)
     each piece, pieceName in siteData.pieces

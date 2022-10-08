@@ -41,10 +41,10 @@ a {
 }
 
 h1 {
-    font-size: 1.3em;
+    font-size: 1.5em; /* matches close-button-wrapper font-size */
     font-weight: normal;
     text-transform: lowercase;
-    letter-spacing: 0.15rem;
+    letter-spacing: 0.06em;
 }
 
 .detail-mode.main-content {
@@ -58,7 +58,17 @@ h1 {
     color: pink;
 }
 
+.header-link {
+    padding: 0.3em;
+    margin: -0.3em;
+}
+
+.header-link:active {
+    text-decoration: overline dotted;
+}
+
 .main-container {
+    /* margin must match overlay margin */
     margin: 1rem;
     background: white;
 }
@@ -86,28 +96,39 @@ h1 {
 .overlay {
     z-index: 1;
     position: absolute;
+    top: 0;
     right: 0;
     left: 0;
-    top: 2rem;
+    /* margin must match main-container margin */
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    background: inherit;
-    align-items: stretch;
+    pointer-events: none;
 }
 
 .overlay-content {
+    pointer-events: auto;
+    background: inherit;
     margin: 1.5rem;
-    margin-top: 0;
 }
 
 .close-button-wrapper {
     text-align: right;
+    background: inherit;
+    font-size: 1.5rem; /* matches h1 height */
 }
 
 .close-button {
-    color: inherit;
-    text-decoration: auto;
+    font-weight: bold;
+    pointer-events: auto;
+    font-size: 1.2rem;
+    vertical-align: middle;
+    padding: 0.8em;
+    margin: -0.8em;
+}
+
+.close-button:active {
+    text-decoration: overline dotted;
 }
 
 .detail-image-wrapper {
@@ -138,8 +159,22 @@ h1 {
         color: lightblue;
     }
 
+    .main-container {
+        /* margin must match overlay margin */
+        margin: 1rem 4rem;
+    }
+
     .main-content {
         width: 50vw;
+    }
+
+    .header-link:hover {
+        text-decoration: overline dotted;
+    }
+
+    .close-button:hover {
+        text-decoration: overline dotted;
+        font-weight: bold;
     }
 
     .detail-mode.main-content {
@@ -148,7 +183,6 @@ h1 {
 
     .detail-mode .detail-link {
         opacity: 0.5;
-        transition: opacity 50ms;
     }
 
     .detail-mode .detail-link:hover {
@@ -156,7 +190,7 @@ h1 {
     }
 
     h1 {
-        font-size: 2.5em;
+        font-size: 2.5em; /* matches close-button wrapper font-size */
     }
 
     .series-row {
@@ -180,24 +214,20 @@ h1 {
     }
 
     .overlay {
-        z-index: 1;
-        position: absolute;
-        right: 0;
-        top: 0;
         left: auto;
-        margin:auto;
-        padding: 1rem;
-        padding-right: 5rem;
-        display: flex;
-        flex-direction: column;
-        background: inherit;
-        align-items: flex-end;
+        /* margin must match main-container margin */
+        margin: 1rem 4rem;
         width: 40vw;
     }
 
     .overlay-content {
-        margin: 1.5rem;
-        /* something is wrong here. 100% - 2 * overlay-content margin */
-        width: calc(100% - 3rem);
+        /* Right margin matches the vertical spacing from close button
+        so that the close button is diagonal.
+        See https://github.com/paulgoblin/jessy-lu/issues/16 */
+        margin: 0 1.8em;
+    }
+
+    .close-button-wrapper {
+        font-size: 2.5em; /* matches h1 height */
     }
 }

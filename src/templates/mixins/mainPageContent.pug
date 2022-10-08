@@ -11,12 +11,14 @@ mixin mainPageTitle(siteData, pieceName)
     +pageTitle(siteData)
 
 mixin mainPageContent(siteData, options = {})
-    a.detail-link(
-        href="/"
-        onclick='handleClientNav(event)'
-        onfocus='handleDetailFocus(event)'
-    )
-        h1= siteData.main.title
+    h1
+        a.header-link(
+            href="/"
+            onclick='handleClientNav(event)'
+            onfocus='handleDetailFocus(event)'
+            ontouchstart=""
+        )
+            | #{siteData.main.title}
     section#main-content.main-content(class= options.detailVisible ? "detail-mode" : "")
         each seriesName in siteData.main.seriesOrder
             +seriesRow(siteData.series[seriesName], siteData)
@@ -36,6 +38,7 @@ mixin detailLink(piece, siteData)
         href=`./${piece.name}`
         onclick='handleClientNav(event)'
         onfocus='handleDetailFocus(event)'
+        ontouchstart=""
     )
         +thumbnail(mainImage)(alt=`Detail for ${piece.title}`)
 
