@@ -109,3 +109,48 @@ document.onkeydown = function (evt) {
     clientNav(HOME_PATH);
   }
 };
+
+// Some crazy hack to get srcset working on mobile
+// where only the thumbnail src is loaded at first.
+// We need to manually load the fullsize image.
+const hasLoadedDetail = {};
+const loadingImages = {};
+function detailImageLoad(event) {
+  const src = event.target.src;
+  // full size has already loaded
+  if (hasLoadedDetail[src]) return;
+
+  // Else, this event is for the thumbnail size onload.
+  // Manually load the full size and then toggle img.src to render it
+  const newImg = new Image;
+  loadingImages[src] = newImg;
+  newImg.onload = function() {
+    // if the target is still around, set the src manually
+    // to force render the correct resolution
+    if (event.target) {
+      hasLoadedDetail[src] = true;
+      event.target.src = src;
+    }
+    console.log("Finished loading image", src);
+    delete loadingImages[src];
+  }
+  newImg.src = src; // start loading the image
+}
+
+const removalObserver = new MutationObserver(function (e) {
+  if (e[0].removedNodes) {
+    // only expect 1 removed node for now. It's the overlay
+    const overlay = e[0].removedNodes[0];
+    if (!overlay) return; // event is not removal event
+    for (let img of overlay.getElementsByTagName('img')) {
+      console.log("Noe removal", img.src, loadingImages)
+      if (loadingImages[img.src]) {
+        console.log("Cancelling image", img.src);
+        loadingImages[img.src].src = "";
+        delete loadingImages[img.src];
+      }
+    }
+  }
+});
+
+removalObserver.observe(document.getElementById('main-container'), { childList: true });
