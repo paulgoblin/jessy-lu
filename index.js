@@ -1,7 +1,9 @@
 const HOME_PATH = '/';
+const MAX_HISTORY = 1;
 
 const appState = {
   lastFocusedElement: null,
+  hasVisitedHome: window.location.pathname === HOME_PATH,
 };
 
 function handleDetailFocus(e) {
@@ -61,12 +63,28 @@ function getPathTemplate(path) {
   return document.getElementById(pieceName);
 }
 
-function navigate(path, state) {
-  window.history.replaceState(
-    state,
-    '',
-    path,
-  );
+function navigate(nextPath, nextState) {
+  const currentPath = window.location.pathname;
+  const next = [nextState, '', nextPath];
+
+  // home -> detail
+  if (currentPath === HOME_PATH) {
+    window.history.pushState(...next);
+  // detail -> home
+  } else if (nextPath === HOME_PATH) {
+    if (appState.hasVisitedHome) {
+      // onpopstate will automatically update appState.historyStack
+      window.history.back();
+    } else {
+      // the app was started on a detail page.
+      window.history.replaceState(...next);
+      appState.hasVisitedHome = true;
+    }
+  // detail -> detail
+  } else {
+    // navigating from detail -> detail
+    window.history.replaceState(...next);
+  }
 }
 
 // Renders a page for a path, if that page exists. Otherwise renders the home page
@@ -95,6 +113,13 @@ function renderDetail(template) {
   const clone = template.content.cloneNode(true);
   document.getElementById('main-content').classList.add('detail-mode');
   document.getElementById('main-container').appendChild(clone);
+  const detail = document.getElementById('detail');
+
+  // Hack to get srcset working on mobile.
+  // toggle the img src to force srcset to force load.
+  for (let img of detail.getElementsByTagName('img')) {
+    img.src = img.src;
+  }
 }
 
 function updatePageTitle(state) {
@@ -109,48 +134,3 @@ document.onkeydown = function (evt) {
     clientNav(HOME_PATH);
   }
 };
-
-// Some crazy hack to get srcset working on mobile
-// where only the thumbnail src is loaded at first.
-// We need to manually load the fullsize image.
-const hasLoadedDetail = {};
-const loadingImages = {};
-function detailImageLoad(event) {
-  const src = event.target.src;
-  // full size has already loaded
-  if (hasLoadedDetail[src]) return;
-
-  // Else, this event is for the thumbnail size onload.
-  // Manually load the full size and then toggle img.src to render it
-  const newImg = new Image;
-  loadingImages[src] = newImg;
-  newImg.onload = function() {
-    // if the target is still around, set the src manually
-    // to force render the correct resolution
-    if (event.target) {
-      hasLoadedDetail[src] = true;
-      event.target.src = src;
-    }
-    console.log("Finished loading image", src);
-    delete loadingImages[src];
-  }
-  newImg.src = src; // start loading the image
-}
-
-const removalObserver = new MutationObserver(function (e) {
-  if (e[0].removedNodes) {
-    // only expect 1 removed node for now. It's the overlay
-    const overlay = e[0].removedNodes[0];
-    if (!overlay) return; // event is not removal event
-    for (let img of overlay.getElementsByTagName('img')) {
-      console.log("Noe removal", img.src, loadingImages)
-      if (loadingImages[img.src]) {
-        console.log("Cancelling image", img.src);
-        loadingImages[img.src].src = "";
-        delete loadingImages[img.src];
-      }
-    }
-  }
-});
-
-removalObserver.observe(document.getElementById('main-container'), { childList: true });
