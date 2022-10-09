@@ -40,7 +40,27 @@ mixin detailLink(piece, siteData)
         onfocus='handleDetailFocus(event)'
         ontouchstart=""
     )
+        +hoverIcons(piece.icons, piece.iconSizeFactor, mainImage)
         +thumbnail(mainImage)(alt=`Detail for ${piece.title}`)
+
+mixin hoverIcons(icons, iconSizeFactor, image)
+    - var formats = image.imageMetadata.webp;
+    - var thumb = formats.find(f => f.url.includes('-thumb.'))
+    //- actual height is 6/7 due to top margin
+    - var ratio = thumb.width / (thumb.height * 6/7)
+    .hover-icons(
+        aria-hidden="true"
+    )
+        - var n = icons.length;
+        - var rows = 4;
+        - var cols = Math.ceil(ratio * rows)
+        - var repeated = Array.from({length: (rows * cols)}, (_, i) => icons[i % n])
+        each icon in repeated
+            span.hover-icon(
+                style=`font-size: ${Math.round(1/iconSizeFactor * 10)/10}rem`
+            )
+                | #{icon}
+
 
 mixin debug(o)
     pre= JSON.stringify(o, null, "  ")

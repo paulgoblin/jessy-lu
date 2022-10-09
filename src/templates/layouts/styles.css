@@ -88,6 +88,18 @@ h1 {
     margin-left: 0;
 }
 
+.detail-link {
+    position: relative;
+}
+
+.hover-icons {
+    display: none;
+}
+
+.hover-icon {
+    display: none;
+}
+
 .thumbnail {
     /* height must match displayHeightRem in images.pug */
     height: 4.5rem;
@@ -170,15 +182,43 @@ h1 {
         visibility: unset;
     }
 
-    .detail-link:hover {
+    .hover-icons {
+        display: unset;
+        position: absolute;
+        top: 0.5rem;
+        height: calc(100% - 1rem);
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        font-size: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        opacity: 0;
+    }
+
+    .hover-icon {
+        display: unset;
+        width: 1rem;
+        line-height: 1rem;
+        margin: 0.22rem;
+        text-align: center;
+    }
+
+    .detail-link:hover .hover-icons {
+        opacity: 1;
+    }
+
+    .detail-link:hover .thumbnail {
         opacity: 0.5;
     }
 
-    .detail-mode .detail-link {
+    .detail-mode .detail-link .thumbnail {
         opacity: 0.5;
     }
 
-    .detail-mode .detail-link:hover {
+    .detail-mode .detail-link:hover .thumbnail {
         opacity: 1;
     }
 
