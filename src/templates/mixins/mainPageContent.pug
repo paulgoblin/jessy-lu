@@ -40,8 +40,8 @@ mixin detailLink(piece, siteData)
         onfocus='handleDetailFocus(event)'
         ontouchstart=""
     )
-        +hoverIcons(piece.icons, piece.iconSizeFactor, mainImage)
         +thumbnail(mainImage)(alt=`Detail for ${piece.title}`)
+        +hoverIcons(piece.icons, piece.iconSizeFactor, mainImage)
 
 mixin hoverIcons(icons, iconSizeFactor, image)
     - var formats = image.imageMetadata.webp;

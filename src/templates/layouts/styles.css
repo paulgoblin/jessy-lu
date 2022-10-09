@@ -64,7 +64,7 @@ h1 {
 }
 
 .header-link:active {
-    text-decoration: overline dotted;
+    text-decoration: underline dotted;
 }
 
 .main-container {
@@ -170,11 +170,11 @@ h1 {
     }
 
     .header-link:hover {
-        text-decoration: overline dotted;
+        text-decoration: underline 3px;
     }
 
     .close-button:hover {
-        text-decoration: overline dotted;
+        text-decoration: underline 2px;
         font-weight: bold;
     }
 
@@ -204,6 +204,10 @@ h1 {
         line-height: 1rem;
         margin: 0.22rem;
         text-align: center;
+    }
+
+    .detail-mode .hover-icons {
+        visibility: hidden;
     }
 
     .detail-link:hover .hover-icons {
