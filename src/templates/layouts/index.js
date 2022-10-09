@@ -95,6 +95,13 @@ function renderDetail(template) {
   const clone = template.content.cloneNode(true);
   document.getElementById('main-content').classList.add('detail-mode');
   document.getElementById('main-container').appendChild(clone);
+  const detail = document.getElementById('detail');
+
+  // Hack to get srcset working on mobile.
+  // toggle the img src to force srcset to force load.
+  for (let img of detail.getElementsByTagName('img')) {
+    img.src = img.src;
+  }
 }
 
 function updatePageTitle(state) {

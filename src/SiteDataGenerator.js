@@ -72,6 +72,7 @@ function SiteDataGenerator({
       name: nameSquash(pieceContent.title),
       main: pieceImages[0],
       images: pieceImages,
+      icons: pieceContent.icons
     };
   }
 

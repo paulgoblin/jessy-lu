@@ -1,13 +1,11 @@
 mixin detailImage(image)
     - var formats = image.imageMetadata.webp;
     - var large = formats.find(f => f.url.includes('-large.'))
-        //- srcset= formats.map(i => i.srcset).join(', ')
-        //- sizes="(min-width: 768px) 40vw, 100vw"
-    div.detail-image-wrapper(
-        style=`padding-top: calc(${large.height/large.width} * 100%)`
-    )
         img.detail-image(
             src='.' + large.url
+            style=`aspect-ratio: ${large.width} / ${large.height};`
+            srcset= formats.map(i => `.${i.srcset}`).join(', ')
+            sizes="(min-width: 768px) 40vw, 100vw"
         )
 
 mixin thumbnail(image)
@@ -21,10 +19,11 @@ mixin thumbnail(image)
     - var desktopWidth = computeRemSize(ratio, 7 /* displayHeightRem */)
     - var mobileWidth = computeRemSize(ratio, 4.5 /* displayHeightRem */)
     img.thumbnail(
-        alt!=attributes.alt
-        srcset= formats.map(i => i.srcset).join(', ')
-        sizes=`(min-width: 768px) ${desktopWidth} , ${mobileWidth}`
         src='.' + thumb.url
+        alt!=attributes.alt
+        srcset= formats.map(i => `.${i.srcset}`).join(', ')
+        sizes=`(min-width: 768px) ${desktopWidth} , ${mobileWidth}`
+        style=`aspect-ratio: ${thumb.width} / ${thumb.height};`
     )
 
 
