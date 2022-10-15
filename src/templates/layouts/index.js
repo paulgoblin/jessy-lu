@@ -21,6 +21,11 @@ function handleClientNav(e) {
 function clientNav(nextPath) {
   const currentPath = decodeURI(location.pathname);
   if (nextPath === currentPath) return;
+  if (nextPath === HOME_PATH && appState.hasVisitedHome) {
+    // onpopstate will automatically update appState.historyStack
+    window.history.back();
+    return;
+  }
   const nextState = getPathState(nextPath);
   const renderedPath = renderPage(nextPath, nextState);
   navigate(renderedPath, nextState);
@@ -72,14 +77,9 @@ function navigate(nextPath, nextState) {
     window.history.pushState(...next);
   // detail -> home
   } else if (nextPath === HOME_PATH) {
-    if (appState.hasVisitedHome) {
-      // onpopstate will automatically update appState.historyStack
-      window.history.back();
-    } else {
-      // the app was started on a detail page.
-      window.history.replaceState(...next);
-      appState.hasVisitedHome = true;
-    }
+    // the app was started on a d[etail page.
+    window.history.replaceState(...next);
+    appState.hasVisitedHome = true;
   // detail -> detail
   } else {
     // navigating from detail -> detail
