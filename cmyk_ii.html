@@ -9,6 +9,10 @@
     margin: 0;
 }
 
+:focus {
+    outline: none;
+}
+
 body,
 html {
     height: 100%;
@@ -57,20 +61,19 @@ h1 {
     visibility: hidden;
 }
 
-#indicator {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: pink;
-}
-
 .header-link {
     padding: 0.3em;
     margin: -0.3em;
 }
 
-.header-link:active {
-    text-decoration: underline dotted;
+.header-link:focus,
+.header-link:hover {
+    text-decoration: underline 3px;
+}
+
+.close-button:focus,
+.close-button:hover {
+    text-decoration: underline 2px;
 }
 
 .main-container {
@@ -159,13 +162,6 @@ h1 {
 }
 
 @media only screen and (min-width: 768px) {
-    #indicator {
-        position: absolute;
-        top: 0;
-        right: 0;
-        color: lightblue;
-    }
-
     .main-container {
         /* margin must match overlay margin */
         margin: 1rem 4rem;
@@ -173,15 +169,6 @@ h1 {
 
     .main-content {
         width: 50vw;
-    }
-
-    .header-link:hover {
-        text-decoration: underline 3px;
-    }
-
-    .close-button:hover {
-        text-decoration: underline 2px;
-        font-weight: bold;
     }
 
     .detail-mode.main-content {
@@ -215,10 +202,12 @@ h1 {
         visibility: hidden;
     }
 
+    .detail-link:focus .hover-icons,
     .detail-link:hover .hover-icons {
         opacity: 1;
     }
 
+    .detail-link:focus .thumbnail,
     .detail-link:hover .thumbnail {
         opacity: 0.5;
     }
@@ -227,6 +216,7 @@ h1 {
         opacity: 0.5;
     }
 
+    .detail-mode .detail-link:focus .thumbnail,
     .detail-mode .detail-link:hover .thumbnail {
         opacity: 1;
     }
@@ -275,7 +265,7 @@ h1 {
 }
     </style>
     <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text class='favicon' y=%22.9em%22 font-size=%2290%22&gt;🍈&lt;/text&gt;&lt;/svg&gt;">
-    <script src="index.js?ts=1665866557706" defer></script>
+    <script src="index.js?ts=1665950451155" defer></script>
   </head>
   <body>
     <div class="main-container" id="main-container">
