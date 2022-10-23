@@ -1,0 +1,55 @@
+site_title: "Jessy Lu"
+
+# Display order of series for main page
+series_order:
+  - "木人木人木人木"
+  - "Image Processing"
+  - "Uninhabitable Spaces"
+  - "Soft Screen"
+  - "CMYK"
+  - "Render"
+  - "Screensaver"
+  - "Car Ads"
+
+# List of series, to define piece order within the series row
+series:
+  - title: "CMYK"
+    pieces:
+      - "CMYK I"
+      - "CMYK II"
+      - "CMYK III"
+      - "CMYK IV"
+
+  - title: "Render"
+    pieces:
+      - "Render I"
+      - "Render II"
+
+  - title: "Screensaver"
+    pieces:
+      - "Screensaver"
+
+  - title: "Car Ads"
+    pieces:
+      - "Car Ads"
+
+  - title: "Uninhabitable Spaces"
+    pieces:
+      - "Uninhabitable Spaces I"
+      - "Uninhabitable Spaces II"
+      - "Uninhabitable Spaces III"
+
+  - title: "木人木人木人木"
+    pieces:
+      - "木人木人木人木"
+
+  - title: "Image Processing"
+    pieces:
+      - "Image Processing I"
+      - "Image Processing II"
+
+  - title: "Soft Screen"
+    pieces:
+      - "Soft Screen I"
+      - "Soft Screen II"
+      - "Soft Screen III"
