@@ -7,7 +7,7 @@ const ImageGenerator = require('./ImageGenerator');
 
 const BUILD_DIR = path.resolve(__dirname, '../build');
 const BUILD_IMG_DIR = path.resolve(BUILD_DIR, 'img');
-const CONTENT_SOURCE_DIR = path.resolve('/Users/michaelrichter/Sites/jessy-lu/source_content');
+const CONTENT_SOURCE_DIR = path.resolve(__dirname, '../source_content');
 
 const CONFIG = {
   sourceDir: CONTENT_SOURCE_DIR,
