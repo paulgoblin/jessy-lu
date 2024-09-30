@@ -149,6 +149,7 @@ h1 {
 .detail-image {
     margin: 1rem 0;
     width: 100%;
+    pointer-events: none;
 }
 
 .detail-image:first-child {
