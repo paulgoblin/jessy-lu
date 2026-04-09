@@ -2,6 +2,7 @@ site_title: "Jessy Lu"
 
 # Display order of series for main page
 series_order:
+  - "Knot pair"
   - "木人木人木人木"
   - "Image Processing"
   - "Uninhabitable Spaces"
@@ -13,6 +14,12 @@ series_order:
 
 # List of series, to define piece order within the series row
 series:
+  - title: "Knot pair"
+    pieces:
+      - "Knot pair I"
+      - "Knot pair II"
+      - "Knot pair III"
+
   - title: "CMYK"
     pieces:
       - "CMYK I"
