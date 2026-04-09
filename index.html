@@ -74,16 +74,22 @@
     }
 
     .under-construction-img {
-      opacity: .85;
     }
+
     .under-construction-image-container {
       margin-top: 0.8rem;
+      max-width: 600px;
+      position: relative;
     }
+
     .under-construction-image-credit {
-      font-size: 0.7em;
+      font-size: 0.6em;
       font-style: italic;
       font-weight: 500;
-      color:#575757
+      color: white;
+      position: absolute;
+      bottom: 0;
+      right: 5px;
     }
   </style>
   <link rel="icon"
@@ -96,11 +102,11 @@
     <h1 class="under-construction-header">under construction</h1>
     <section class="main-content" id="main-content">
       <div class="under-construction-image-container">
-        <img class="under-construction-img" src="./img/under_construction_medium.jpeg" alt="Under construction"
+        <img class="under-construction-img" src="./img/under_construction.jpeg" alt="Under construction"
           style="aspect-ratio: 150 / 105;" />
-      </div>
-      <div class="under-construction-image-credit">
-        <span>Image Credit: Nicholas Calcott. Courtesy of OXMAN</span>
+        <div class="under-construction-image-credit">
+          <span>Image Credit: Nicholas Calcott. Courtesy of OXMAN</span>
+        </div>
       </div>
     </section>
   </div>
