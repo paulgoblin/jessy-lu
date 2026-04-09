@@ -1,536 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>jessy lu
-    </title>
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <style>
-* {
-    margin: 0;
-}
 
-:focus {
-    outline: none;
-}
-
-body,
-html {
-    height: 100%;
-}
-
-body {
-    font-family: Helvetica, Arial, sans-serif;
-    margin: 0;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
-    display: block;
-    max-width: 100%;
-}
-
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    overflow-wrap: break-word;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-h1 {
-    font-size: 1.5em; /* matches close-button-wrapper font-size */
-    font-weight: normal;
-    text-transform: lowercase;
-    letter-spacing: 0.06em;
-}
-
-.detail-mode.main-content {
-    visibility: hidden;
-}
-
-.header-link {
-    padding: 0.3em;
-    margin: -0.3em;
-}
-
-.header-link:focus,
-.header-link:hover {
-    text-decoration: underline 3px;
-}
-
-.close-button:focus,
-.close-button:hover {
-    text-decoration: underline 2px;
-}
-
-.main-container {
-    /* margin must match overlay margin */
-    margin: 1rem;
-    background: white;
-}
-
-.series-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1rem 0;
-}
-
-.series-item {
-    margin: 0.2rem;
-    height: auto;
-}
-
-.series-item:first-child {
-    margin-left: 0;
-}
-
-.detail-link {
-    position: relative;
-}
-
-.hover-icons {
-    display: none;
-}
-
-.hover-icon {
-    display: none;
-}
-
-.thumbnail {
-    /* height must match displayHeightRem in images.pug */
-    height: 4.5rem;
-}
-
-.overlay {
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    /* margin must match main-container margin */
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    pointer-events: none;
-}
-
-.overlay-content {
-    pointer-events: auto;
-    background: inherit;
-    margin: 1.5rem;
-}
-
-.close-button-wrapper {
-    text-align: right;
-    background: inherit;
-    font-size: 1.5rem; /* matches h1 height */
-}
-
-.close-button {
-    font-weight: bold;
-    pointer-events: auto;
-    font-size: 1.2rem;
-    vertical-align: middle;
-    padding: 0.8em;
-    margin: -0.8em;
-}
-
-.close-button:active {
-    text-decoration: overline dotted;
-}
-
-.detail-image {
-    margin: 1rem 0;
-    width: 100%;
-    pointer-events: none;
-}
-
-.detail-image:first-child {
-    margin-top: 0;
-}
-
-@media only screen and (min-width: 768px) {
-    .main-container {
-        /* margin must match overlay margin */
-        margin: 1rem 4rem;
+<head>
+  <title>jessy lu
+  </title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <style>
+    * {
+      margin: 0;
     }
 
-    .main-content {
-        width: 50vw;
+    :focus {
+      outline: none;
     }
 
-    .detail-mode.main-content {
-        visibility: unset;
+    body,
+    html {
+      height: 100%;
     }
 
-    .hover-icons {
-        display: unset;
-        position: absolute;
-        top: 0.5rem;
-        height: calc(100% - 1rem);
-        width: 100%;
-        overflow: hidden;
-        display: flex;
-        font-size: 1rem;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      margin: 0;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .hover-icon {
-        display: unset;
-        width: 1rem;
-        line-height: 1rem;
-        margin: 0.22rem;
-        text-align: center;
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+      display: block;
+      max-width: 100%;
     }
 
-    .detail-mode .hover-icons {
-        visibility: hidden;
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      overflow-wrap: break-word;
     }
 
-    .detail-link:focus .hover-icons,
-    .detail-link:hover .hover-icons {
-        opacity: 1;
-    }
-
-    .detail-link:focus .thumbnail,
-    .detail-link:hover .thumbnail {
-        opacity: 0.5;
-    }
-
-    .detail-mode .detail-link .thumbnail {
-        opacity: 0.5;
-    }
-
-    .detail-mode .detail-link:focus .thumbnail,
-    .detail-mode .detail-link:hover .thumbnail {
-        opacity: 1;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     h1 {
-        font-size: 2.5em; /* matches close-button wrapper font-size */
+      font-size: 1.5em;
+      /* matches close-button-wrapper font-size */
+      font-weight: normal;
+      text-transform: lowercase;
+      letter-spacing: 0.06em;
     }
 
-    .series-row {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 1rem 0;
+    .main-container {
+      /* margin must match overlay margin */
+      margin: 1rem;
+      background: white;
     }
 
-    .series-item {
-        margin: 0.3rem;
-        height: auto;
+    .under-construction-header {
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+      color: #5D61BF;
+      letter-spacing: 0.05em;
     }
 
-    .series-item:first-child {
-        margin-left: 0;
+    .under-construction-img {
+      opacity: .85;
     }
+    .under-construction-image-container {
+      margin-top: 0.8rem;
+    }
+    .under-construction-image-credit {
+      font-size: 0.7em;
+      font-style: italic;
+      font-weight: 500;
+      color:#575757
+    }
+  </style>
+  <link rel="icon"
+    href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text class='favicon' y=%22.9em%22 font-size=%2290%22&gt;🕸️&lt;/text&gt;&lt;/svg&gt;">
+  <script src="index.js?ts=1775699177165" defer></script>
+</head>
 
-    .thumbnail {
-        /* height must match displayHeightRem in images.pug */
-        height: 7rem;
-    }
+<body>
+  <div class="main-container" id="main-container">
+    <h1 class="under-construction-header">under construction</h1>
+    <section class="main-content" id="main-content">
+      <div class="under-construction-image-container">
+        <img class="under-construction-img" src="./img/under_construction_medium.jpeg" alt="Under construction"
+          style="aspect-ratio: 150 / 105;" />
+      </div>
+      <div class="under-construction-image-credit">
+        <span>Image Credit: Nicholas Calcott. Courtesy of OXMAN</span>
+      </div>
+    </section>
+  </div>
+</body>
 
-    .overlay {
-        left: auto;
-        /* margin must match main-container margin */
-        margin: 1rem 4rem;
-        width: 40vw;
-    }
-
-    .overlay-content {
-        /* Right margin matches the vertical spacing from close button
-        so that the close button is diagonal.
-        See https://github.com/paulgoblin/jessy-lu/issues/16 */
-        margin: 0 1.8em;
-    }
-
-    .close-button-wrapper {
-        font-size: 2.5em; /* matches h1 height */
-    }
-}
-    </style>
-    <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text class='favicon' y=%22.9em%22 font-size=%2290%22&gt;🍈&lt;/text&gt;&lt;/svg&gt;">
-    <script src="index.js?ts=1775699177165" defer></script>
-  </head>
-  <body>
-    <div class="main-container" id="main-container">
-      <h1><a class="header-link" href="/" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart="">Jessy Lu</a></h1>
-      <section class="main-content" id="main-content">
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./knot_pair_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/knot_pair_i-thumb.webp" alt="Detail for Knot pair I" srcset="./img/knot_pair_i-micro.webp 75w, ./img/knot_pair_i-thumb.webp 150w, ./img/knot_pair_i-small.webp 300w, ./img/knot_pair_i-medium.webp 600w, ./img/knot_pair_i-large.webp 1000w" sizes="(min-width: 768px) 10rem , 6.43rem" style="aspect-ratio: 150 / 105;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./knot_pair_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/knot_pair_ii-thumb.webp" alt="Detail for Knot pair II" srcset="./img/knot_pair_ii-micro.webp 75w, ./img/knot_pair_ii-thumb.webp 150w, ./img/knot_pair_ii-small.webp 300w, ./img/knot_pair_ii-medium.webp 600w, ./img/knot_pair_ii-large.webp 1000w" sizes="(min-width: 768px) 10rem , 6.43rem" style="aspect-ratio: 150 / 105;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./knot_pair_iii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/knot_pair_iii-thumb.webp" alt="Detail for Knot pair III" srcset="./img/knot_pair_iii-micro.webp 75w, ./img/knot_pair_iii-thumb.webp 150w, ./img/knot_pair_iii-small.webp 300w, ./img/knot_pair_iii-medium.webp 600w, ./img/knot_pair_iii-large.webp 1000w" sizes="(min-width: 768px) 10rem , 6.43rem" style="aspect-ratio: 150 / 105;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span><span class="hover-icon" style="font-size: 1rem"> </span>
-              </div></a>
-          </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./mu_ren_mu_ren_mu_ren_mu" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/木人木人木人木-thumb.webp" alt="Detail for 木人木人木人木" srcset="./img/木人木人木人木-micro.webp 75w, ./img/木人木人木人木-thumb.webp 150w, ./img/木人木人木人木-small.webp 300w, ./img/木人木人木人木-medium.webp 600w, ./img/木人木人木人木-large.webp 1000w" sizes="(min-width: 768px) 4.67rem , 3rem" style="aspect-ratio: 150 / 225;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 0.6rem">木</span><span class="hover-icon" style="font-size: 0.6rem">人</span><span class="hover-icon" style="font-size: 0.6rem">木</span><span class="hover-icon" style="font-size: 0.6rem">人</span><span class="hover-icon" style="font-size: 0.6rem">木</span><span class="hover-icon" style="font-size: 0.6rem">人</span><span class="hover-icon" style="font-size: 0.6rem">木</span><span class="hover-icon" style="font-size: 0.6rem">人</span><span class="hover-icon" style="font-size: 0.6rem">木</span><span class="hover-icon" style="font-size: 0.6rem">人</span><span class="hover-icon" style="font-size: 0.6rem">木</span><span class="hover-icon" style="font-size: 0.6rem">人</span><span class="hover-icon" style="font-size: 0.6rem">木</span><span class="hover-icon" style="font-size: 0.6rem">人</span><span class="hover-icon" style="font-size: 0.6rem">木</span><span class="hover-icon" style="font-size: 0.6rem">人</span>
-              </div></a>
-          </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./image_processing_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/image_processing_i-thumb.webp" alt="Detail for Image Processing I" srcset="./img/image_processing_i-micro.webp 75w, ./img/image_processing_i-thumb.webp 150w, ./img/image_processing_i-small.webp 300w, ./img/image_processing_i-medium.webp 600w, ./img/image_processing_i-large.webp 1000w" sizes="(min-width: 768px) 6.29rem , 4.04rem" style="aspect-ratio: 150 / 167;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span><span class="hover-icon" style="font-size: 1rem">ʅ</span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./image_processing_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/image_processing06-thumb.webp" alt="Detail for Image Processing II" srcset="./img/image_processing06-micro.webp 75w, ./img/image_processing06-thumb.webp 150w, ./img/image_processing06-small.webp 300w, ./img/image_processing06-medium.webp 600w, ./img/image_processing06-large.webp 1000w" sizes="(min-width: 768px) 6.29rem , 4.04rem" style="aspect-ratio: 150 / 167;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span><span class="hover-icon" style="font-size: 0.7rem">ʃ</span>
-              </div></a>
-          </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./uninhabitable_spaces_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/uninhabitable_spaces_i-thumb.webp" alt="Detail for Uninhabitable Spaces I" srcset="./img/uninhabitable_spaces_i-micro.webp 75w, ./img/uninhabitable_spaces_i-thumb.webp 150w, ./img/uninhabitable_spaces_i-small.webp 300w, ./img/uninhabitable_spaces_i-medium.webp 600w, ./img/uninhabitable_spaces_i-large.webp 1000w" sizes="(min-width: 768px) 5.5rem , 3.53rem" style="aspect-ratio: 150 / 191;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span><span class="hover-icon" style="font-size: 1rem">⊏</span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./uninhabitable_spaces_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/uninhabitable_spaces_ii-thumb.webp" alt="Detail for Uninhabitable Spaces II" srcset="./img/uninhabitable_spaces_ii-micro.webp 75w, ./img/uninhabitable_spaces_ii-thumb.webp 150w, ./img/uninhabitable_spaces_ii-small.webp 300w, ./img/uninhabitable_spaces_ii-medium.webp 600w, ./img/uninhabitable_spaces_ii-large.webp 1000w" sizes="(min-width: 768px) 5.53rem , 3.55rem" style="aspect-ratio: 150 / 190;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span><span class="hover-icon" style="font-size: 1rem">⎕</span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./uninhabitable_spaces_iii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/uninhabitable_spaces_iii-thumb.webp" alt="Detail for Uninhabitable Spaces III" srcset="./img/uninhabitable_spaces_iii-micro.webp 75w, ./img/uninhabitable_spaces_iii-thumb.webp 150w, ./img/uninhabitable_spaces_iii-small.webp 300w, ./img/uninhabitable_spaces_iii-medium.webp 600w, ./img/uninhabitable_spaces_iii-large.webp 1000w" sizes="(min-width: 768px) 5.56rem , 3.57rem" style="aspect-ratio: 150 / 189;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span><span class="hover-icon" style="font-size: 1rem">⊐</span>
-              </div></a>
-          </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./soft_screen_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/soft_screen_i-thumb.webp" alt="Detail for Soft Screen I" srcset="./img/soft_screen_i-micro.webp 75w, ./img/soft_screen_i-thumb.webp 150w, ./img/soft_screen_i-small.webp 300w, ./img/soft_screen_i-medium.webp 600w, ./img/soft_screen_i-large.webp 1000w" sizes="(min-width: 768px) 7.19rem , 4.62rem" style="aspect-ratio: 150 / 146;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span><span class="hover-icon" style="font-size: 1.1rem">⌂</span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./soft_screen_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/soft_screen_ii-thumb.webp" alt="Detail for Soft Screen II" srcset="./img/soft_screen_ii-micro.webp 75w, ./img/soft_screen_ii-thumb.webp 150w, ./img/soft_screen_ii-small.webp 300w, ./img/soft_screen_ii-medium.webp 600w, ./img/soft_screen_ii-large.webp 1000w" sizes="(min-width: 768px) 10.1rem , 6.49rem" style="aspect-ratio: 150 / 104;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span><span class="hover-icon" style="font-size: 1rem">⏥</span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./soft_screen_iii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/soft_screen_iii-thumb.webp" alt="Detail for Soft Screen III" srcset="./img/soft_screen_iii-micro.webp 75w, ./img/soft_screen_iii-thumb.webp 150w, ./img/soft_screen_iii-small.webp 300w, ./img/soft_screen_iii-medium.webp 600w, ./img/soft_screen_iii-large.webp 1000w" sizes="(min-width: 768px) 14.19rem , 9.12rem" style="aspect-ratio: 150 / 74;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span><span class="hover-icon" style="font-size: 1rem">⏢</span>
-              </div></a>
-          </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./cmyk_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/cmyk_i-thumb.webp" alt="Detail for CMYK I" srcset="./img/cmyk_i-micro.webp 75w, ./img/cmyk_i-thumb.webp 150w, ./img/cmyk_i-small.webp 300w, ./img/cmyk_i-medium.webp 600w, ./img/cmyk_i-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" style="aspect-ratio: 150 / 194;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span><span class="hover-icon" style="font-size: 1rem">∷</span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./cmyk_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/cmyk_ii-thumb.webp" alt="Detail for CMYK II" srcset="./img/cmyk_ii-micro.webp 75w, ./img/cmyk_ii-thumb.webp 150w, ./img/cmyk_ii-small.webp 300w, ./img/cmyk_ii-medium.webp 600w, ./img/cmyk_ii-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" style="aspect-ratio: 150 / 194;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span><span class="hover-icon" style="font-size: 1rem">⁘</span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./cmyk_iii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/cmyk_iii-thumb.webp" alt="Detail for CMYK III" srcset="./img/cmyk_iii-micro.webp 75w, ./img/cmyk_iii-thumb.webp 150w, ./img/cmyk_iii-small.webp 300w, ./img/cmyk_iii-medium.webp 600w, ./img/cmyk_iii-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" style="aspect-ratio: 150 / 194;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span><span class="hover-icon" style="font-size: 1rem">⁙</span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./cmyk_iv" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/cmyk_iv-thumb.webp" alt="Detail for CMYK IV" srcset="./img/cmyk_iv-micro.webp 75w, ./img/cmyk_iv-thumb.webp 150w, ./img/cmyk_iv-small.webp 300w, ./img/cmyk_iv-medium.webp 600w, ./img/cmyk_iv-large.webp 1000w" sizes="(min-width: 768px) 5.41rem , 3.48rem" style="aspect-ratio: 150 / 194;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span><span class="hover-icon" style="font-size: 1rem">⁛</span>
-              </div></a>
-          </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./render_i" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/render_i-thumb.webp" alt="Detail for Render I" srcset="./img/render_i-micro.webp 75w, ./img/render_i-thumb.webp 150w, ./img/render_i-small.webp 300w, ./img/render_i-medium.webp 600w, ./img/render_i-large.webp 1000w" sizes="(min-width: 768px) 11.93rem , 7.67rem" style="aspect-ratio: 150 / 88;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span><span class="hover-icon" style="font-size: 1rem">﹀</span>
-              </div></a>
-          </div>
-          <div class="series-item"><a class="detail-link" href="./render_ii" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/render_ii-thumb.webp" alt="Detail for Render II" srcset="./img/render_ii-micro.webp 75w, ./img/render_ii-thumb.webp 150w, ./img/render_ii-small.webp 300w, ./img/render_ii-medium.webp 600w, ./img/render_ii-large.webp 1000w" sizes="(min-width: 768px) 5rem , 3.21rem" style="aspect-ratio: 150 / 210;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span><span class="hover-icon" style="font-size: 1rem">⑊</span>
-              </div></a>
-          </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./screensaver" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/screensaver-thumb.webp" alt="Detail for Screensaver" srcset="./img/screensaver-micro.webp 75w, ./img/screensaver-thumb.webp 150w, ./img/screensaver-small.webp 300w, ./img/screensaver-medium.webp 600w, ./img/screensaver-large.webp 1000w" sizes="(min-width: 768px) 9.38rem , 6.03rem" style="aspect-ratio: 150 / 112;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span><span class="hover-icon" style="font-size: 1rem">ʭ</span>
-              </div></a>
-          </div>
-        </div>
-        <div class="series-row">
-          <div class="series-item"><a class="detail-link" href="./car_ads" onclick="handleClientNav(event)" onfocus="handleDetailFocus(event)" ontouchstart=""><img class="thumbnail" src="./img/car_ads-thumb.webp" alt="Detail for Car Ads" srcset="./img/car_ads-micro.webp 75w, ./img/car_ads-thumb.webp 150w, ./img/car_ads-small.webp 300w, ./img/car_ads-medium.webp 600w, ./img/car_ads-large.webp 1000w" sizes="(min-width: 768px) 9.21rem , 5.92rem" style="aspect-ratio: 150 / 114;"/>
-              <div class="hover-icons" aria-hidden="true"><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span><span class="hover-icon" style="font-size: 1rem">⑉</span>
-              </div></a>
-          </div>
-        </div>
-      </section>
-    </div>
-    <template id="mu_ren_mu_ren_mu_ren_mu" data-piece-title="木人木人木人木">
-      <section class="overlay" id="detail" role="dialog" aria-label="木人木人木人木"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/木人木人木人木-large.webp" style="aspect-ratio: 1000 / 1500;" srcset="./img/木人木人木人木-micro.webp 75w, ./img/木人木人木人木-thumb.webp 150w, ./img/木人木人木人木-small.webp 300w, ./img/木人木人木人木-medium.webp 600w, ./img/木人木人木人木-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/木人木人木人木_detail_1-large.webp" style="aspect-ratio: 1000 / 800;" srcset="./img/木人木人木人木_detail_1-micro.webp 75w, ./img/木人木人木人木_detail_1-thumb.webp 150w, ./img/木人木人木人木_detail_1-small.webp 300w, ./img/木人木人木人木_detail_1-medium.webp 600w, ./img/木人木人木人木_detail_1-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/木人木人木人木_detail_2-large.webp" style="aspect-ratio: 1000 / 800;" srcset="./img/木人木人木人木_detail_2-micro.webp 75w, ./img/木人木人木人木_detail_2-thumb.webp 150w, ./img/木人木人木人木_detail_2-small.webp 300w, ./img/木人木人木人木_detail_2-medium.webp 600w, ./img/木人木人木人木_detail_2-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="image_processing_i" data-piece-title="Image Processing I">
-      <section class="overlay" id="detail" role="dialog" aria-label="Image Processing I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/image_processing_i-large.webp" style="aspect-ratio: 1000 / 1115;" srcset="./img/image_processing_i-micro.webp 75w, ./img/image_processing_i-thumb.webp 150w, ./img/image_processing_i-small.webp 300w, ./img/image_processing_i-medium.webp 600w, ./img/image_processing_i-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/image_processing_i_detail_1-large.webp" style="aspect-ratio: 1000 / 1250;" srcset="./img/image_processing_i_detail_1-micro.webp 75w, ./img/image_processing_i_detail_1-thumb.webp 150w, ./img/image_processing_i_detail_1-small.webp 300w, ./img/image_processing_i_detail_1-medium.webp 600w, ./img/image_processing_i_detail_1-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/image_processing_i_detail_2-large.webp" style="aspect-ratio: 1000 / 800;" srcset="./img/image_processing_i_detail_2-micro.webp 75w, ./img/image_processing_i_detail_2-thumb.webp 150w, ./img/image_processing_i_detail_2-small.webp 300w, ./img/image_processing_i_detail_2-medium.webp 600w, ./img/image_processing_i_detail_2-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/image_processing_i_detail_3-large.webp" style="aspect-ratio: 1000 / 800;" srcset="./img/image_processing_i_detail_3-micro.webp 75w, ./img/image_processing_i_detail_3-thumb.webp 150w, ./img/image_processing_i_detail_3-small.webp 300w, ./img/image_processing_i_detail_3-medium.webp 600w, ./img/image_processing_i_detail_3-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="image_processing_ii" data-piece-title="Image Processing II">
-      <section class="overlay" id="detail" role="dialog" aria-label="Image Processing II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/image_processing06-large.webp" style="aspect-ratio: 1000 / 1115;" srcset="./img/image_processing06-micro.webp 75w, ./img/image_processing06-thumb.webp 150w, ./img/image_processing06-small.webp 300w, ./img/image_processing06-medium.webp 600w, ./img/image_processing06-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="uninhabitable_spaces_i" data-piece-title="Uninhabitable Spaces I">
-      <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/uninhabitable_spaces_i-large.webp" style="aspect-ratio: 1000 / 1275;" srcset="./img/uninhabitable_spaces_i-micro.webp 75w, ./img/uninhabitable_spaces_i-thumb.webp 150w, ./img/uninhabitable_spaces_i-small.webp 300w, ./img/uninhabitable_spaces_i-medium.webp 600w, ./img/uninhabitable_spaces_i-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="uninhabitable_spaces_ii" data-piece-title="Uninhabitable Spaces II">
-      <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/uninhabitable_spaces_ii-large.webp" style="aspect-ratio: 1000 / 1267;" srcset="./img/uninhabitable_spaces_ii-micro.webp 75w, ./img/uninhabitable_spaces_ii-thumb.webp 150w, ./img/uninhabitable_spaces_ii-small.webp 300w, ./img/uninhabitable_spaces_ii-medium.webp 600w, ./img/uninhabitable_spaces_ii-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="uninhabitable_spaces_iii" data-piece-title="Uninhabitable Spaces III">
-      <section class="overlay" id="detail" role="dialog" aria-label="Uninhabitable Spaces III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/uninhabitable_spaces_iii-large.webp" style="aspect-ratio: 1000 / 1264;" srcset="./img/uninhabitable_spaces_iii-micro.webp 75w, ./img/uninhabitable_spaces_iii-thumb.webp 150w, ./img/uninhabitable_spaces_iii-small.webp 300w, ./img/uninhabitable_spaces_iii-medium.webp 600w, ./img/uninhabitable_spaces_iii-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="soft_screen_i" data-piece-title="Soft Screen I">
-      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/soft_screen_i-large.webp" style="aspect-ratio: 1000 / 976;" srcset="./img/soft_screen_i-micro.webp 75w, ./img/soft_screen_i-thumb.webp 150w, ./img/soft_screen_i-small.webp 300w, ./img/soft_screen_i-medium.webp 600w, ./img/soft_screen_i-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/soft_screen_i_detail_1-large.webp" style="aspect-ratio: 1000 / 714;" srcset="./img/soft_screen_i_detail_1-micro.webp 75w, ./img/soft_screen_i_detail_1-thumb.webp 150w, ./img/soft_screen_i_detail_1-small.webp 300w, ./img/soft_screen_i_detail_1-medium.webp 600w, ./img/soft_screen_i_detail_1-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="soft_screen_ii" data-piece-title="Soft Screen II">
-      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/soft_screen_ii-large.webp" style="aspect-ratio: 1000 / 696;" srcset="./img/soft_screen_ii-micro.webp 75w, ./img/soft_screen_ii-thumb.webp 150w, ./img/soft_screen_ii-small.webp 300w, ./img/soft_screen_ii-medium.webp 600w, ./img/soft_screen_ii-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/soft_screen_ii_detail_1-large.webp" style="aspect-ratio: 1000 / 714;" srcset="./img/soft_screen_ii_detail_1-micro.webp 75w, ./img/soft_screen_ii_detail_1-thumb.webp 150w, ./img/soft_screen_ii_detail_1-small.webp 300w, ./img/soft_screen_ii_detail_1-medium.webp 600w, ./img/soft_screen_ii_detail_1-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="soft_screen_iii" data-piece-title="Soft Screen III">
-      <section class="overlay" id="detail" role="dialog" aria-label="Soft Screen III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/soft_screen_iii-large.webp" style="aspect-ratio: 1000 / 497;" srcset="./img/soft_screen_iii-micro.webp 75w, ./img/soft_screen_iii-thumb.webp 150w, ./img/soft_screen_iii-small.webp 300w, ./img/soft_screen_iii-medium.webp 600w, ./img/soft_screen_iii-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/soft_screen_iii_detail_1-large.webp" style="aspect-ratio: 1000 / 714;" srcset="./img/soft_screen_iii_detail_1-micro.webp 75w, ./img/soft_screen_iii_detail_1-thumb.webp 150w, ./img/soft_screen_iii_detail_1-small.webp 300w, ./img/soft_screen_iii_detail_1-medium.webp 600w, ./img/soft_screen_iii_detail_1-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="cmyk_i" data-piece-title="CMYK I">
-      <section class="overlay" id="detail" role="dialog" aria-label="CMYK I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/cmyk_i-large.webp" style="aspect-ratio: 1000 / 1294;" srcset="./img/cmyk_i-micro.webp 75w, ./img/cmyk_i-thumb.webp 150w, ./img/cmyk_i-small.webp 300w, ./img/cmyk_i-medium.webp 600w, ./img/cmyk_i-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="cmyk_ii" data-piece-title="CMYK II">
-      <section class="overlay" id="detail" role="dialog" aria-label="CMYK II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/cmyk_ii-large.webp" style="aspect-ratio: 1000 / 1294;" srcset="./img/cmyk_ii-micro.webp 75w, ./img/cmyk_ii-thumb.webp 150w, ./img/cmyk_ii-small.webp 300w, ./img/cmyk_ii-medium.webp 600w, ./img/cmyk_ii-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="cmyk_iii" data-piece-title="CMYK III">
-      <section class="overlay" id="detail" role="dialog" aria-label="CMYK III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/cmyk_iii-large.webp" style="aspect-ratio: 1000 / 1293;" srcset="./img/cmyk_iii-micro.webp 75w, ./img/cmyk_iii-thumb.webp 150w, ./img/cmyk_iii-small.webp 300w, ./img/cmyk_iii-medium.webp 600w, ./img/cmyk_iii-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="cmyk_iv" data-piece-title="CMYK IV">
-      <section class="overlay" id="detail" role="dialog" aria-label="CMYK IV"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/cmyk_iv-large.webp" style="aspect-ratio: 1000 / 1294;" srcset="./img/cmyk_iv-micro.webp 75w, ./img/cmyk_iv-thumb.webp 150w, ./img/cmyk_iv-small.webp 300w, ./img/cmyk_iv-medium.webp 600w, ./img/cmyk_iv-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="render_i" data-piece-title="Render I">
-      <section class="overlay" id="detail" role="dialog" aria-label="Render I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/render_i-large.webp" style="aspect-ratio: 1000 / 589;" srcset="./img/render_i-micro.webp 75w, ./img/render_i-thumb.webp 150w, ./img/render_i-small.webp 300w, ./img/render_i-medium.webp 600w, ./img/render_i-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/render_i_detail_1-large.webp" style="aspect-ratio: 1000 / 666;" srcset="./img/render_i_detail_1-micro.webp 75w, ./img/render_i_detail_1-thumb.webp 150w, ./img/render_i_detail_1-small.webp 300w, ./img/render_i_detail_1-medium.webp 600w, ./img/render_i_detail_1-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/render_i_detail_2-large.webp" style="aspect-ratio: 1000 / 666;" srcset="./img/render_i_detail_2-micro.webp 75w, ./img/render_i_detail_2-thumb.webp 150w, ./img/render_i_detail_2-small.webp 300w, ./img/render_i_detail_2-medium.webp 600w, ./img/render_i_detail_2-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="render_ii" data-piece-title="Render II">
-      <section class="overlay" id="detail" role="dialog" aria-label="Render II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/render_ii-large.webp" style="aspect-ratio: 1000 / 1400;" srcset="./img/render_ii-micro.webp 75w, ./img/render_ii-thumb.webp 150w, ./img/render_ii-small.webp 300w, ./img/render_ii-medium.webp 600w, ./img/render_ii-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="screensaver" data-piece-title="Screensaver">
-      <section class="overlay" id="detail" role="dialog" aria-label="Screensaver"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/screensaver-large.webp" style="aspect-ratio: 1000 / 750;" srcset="./img/screensaver-micro.webp 75w, ./img/screensaver-thumb.webp 150w, ./img/screensaver-small.webp 300w, ./img/screensaver-medium.webp 600w, ./img/screensaver-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/screensaver_detail_1-large.webp" style="aspect-ratio: 1000 / 666;" srcset="./img/screensaver_detail_1-micro.webp 75w, ./img/screensaver_detail_1-thumb.webp 150w, ./img/screensaver_detail_1-small.webp 300w, ./img/screensaver_detail_1-medium.webp 600w, ./img/screensaver_detail_1-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/><img class="detail-image" src="./img/screensaver_detail_2-large.webp" style="aspect-ratio: 1000 / 666;" srcset="./img/screensaver_detail_2-micro.webp 75w, ./img/screensaver_detail_2-thumb.webp 150w, ./img/screensaver_detail_2-small.webp 300w, ./img/screensaver_detail_2-medium.webp 600w, ./img/screensaver_detail_2-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="car_ads" data-piece-title="Car Ads">
-      <section class="overlay" id="detail" role="dialog" aria-label="Car Ads"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/car_ads-large.webp" style="aspect-ratio: 1000 / 762;" srcset="./img/car_ads-micro.webp 75w, ./img/car_ads-thumb.webp 150w, ./img/car_ads-small.webp 300w, ./img/car_ads-medium.webp 600w, ./img/car_ads-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="knot_pair_i" data-piece-title="Knot pair I">
-      <section class="overlay" id="detail" role="dialog" aria-label="Knot pair I"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/knot_pair_i-large.webp" style="aspect-ratio: 1000 / 700;" srcset="./img/knot_pair_i-micro.webp 75w, ./img/knot_pair_i-thumb.webp 150w, ./img/knot_pair_i-small.webp 300w, ./img/knot_pair_i-medium.webp 600w, ./img/knot_pair_i-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="knot_pair_ii" data-piece-title="Knot pair II">
-      <section class="overlay" id="detail" role="dialog" aria-label="Knot pair II"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/knot_pair_ii-large.webp" style="aspect-ratio: 1000 / 700;" srcset="./img/knot_pair_ii-micro.webp 75w, ./img/knot_pair_ii-thumb.webp 150w, ./img/knot_pair_ii-small.webp 300w, ./img/knot_pair_ii-medium.webp 600w, ./img/knot_pair_ii-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-    <template id="knot_pair_iii" data-piece-title="Knot pair III">
-      <section class="overlay" id="detail" role="dialog" aria-label="Knot pair III"><span class="close-button-wrapper"><a class="close-button" id="close" href="/" onclick="handleClientNav(event)" aria-label="Close" ontouchstart="">
-            ✕
-            </a></span>
-        <div class="overlay-content"><img class="detail-image" src="./img/knot_pair_iii-large.webp" style="aspect-ratio: 1000 / 700;" srcset="./img/knot_pair_iii-micro.webp 75w, ./img/knot_pair_iii-thumb.webp 150w, ./img/knot_pair_iii-small.webp 300w, ./img/knot_pair_iii-medium.webp 600w, ./img/knot_pair_iii-large.webp 1000w" sizes="(min-width: 768px) 40vw, 100vw"/>
-        </div>
-      </section>
-    </template>
-  </body>
 </html>
