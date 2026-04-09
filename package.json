@@ -5,10 +5,11 @@
   "main": "./source/script.js",
   "scripts": {
     "build": "node ./src/script.js",
-    "test": "npm run build && http-server ./build",
+    "test": "npm run build && npm run serve",
     "dev": "npm run clean && npm-watch",
     "watch": "npm-watch",
-    "clean": "rm -rf ./build"
+    "clean": "rm -rf ./build",
+    "serve": "http-server ./build"
   },
   "watch": {
     "test": {

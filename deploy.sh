@@ -10,11 +10,11 @@ confirm ()
     fi;
 }
 
-echo "Cleaning build folder";
-npm run clean;
+# echo "Cleaning build folder";
+# npm run clean;
 
-echo "Building static assets";
-npm run build;
+# echo "Building static assets";
+# npm run build;
 
 echo "Moving build contents to gh-pages";
 git checkout gh-pages;
